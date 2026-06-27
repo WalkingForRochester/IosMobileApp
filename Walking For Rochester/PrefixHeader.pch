@@ -1,0 +1,13 @@
+//
+//  PrefixHeader.pch
+//  Walking For Rochester
+//
+//  Created by Lee Hasiuk on 5/18/26.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define WEAK_SELF_PTR typeof(self) __weak weakSelf = self
+
+#endif /* PrefixHeader_pch */

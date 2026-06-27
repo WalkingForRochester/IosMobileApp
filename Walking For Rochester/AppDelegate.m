@@ -5,7 +5,9 @@
 //  Created by Lee Hasiuk on 1/15/26.
 //
 
+@import GoogleMaps;
 #import "AppDelegate.h"
+#import "Secrets.h"
 
 @interface AppDelegate ()
 
@@ -14,8 +16,11 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    [GMSServices provideAPIKey:GOOGLE_MAPS_KEY];
+    [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:16 * 1024 * 1024 diskCapacity:256 * 1024 * 1024 diskPath:@"ImageCache"]];
+    
     return YES;
 }
 
@@ -35,6 +40,5 @@
     // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
-
 
 @end

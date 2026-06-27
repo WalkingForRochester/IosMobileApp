@@ -6,8 +6,17 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9A0D7CF18ED4BAA477D3CA6B /* libPods-Walking For Rochester.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4A4232D6C32808612F0D047 /* libPods-Walking For Rochester.a */; };
+		9BCE92082FCA196F00BAA793 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BCE92072FCA196F00BAA793 /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		88952BD606AADF644029C033 /* Pods-Walking For Rochester.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walking For Rochester.release.xcconfig"; path = "Target Support Files/Pods-Walking For Rochester/Pods-Walking For Rochester.release.xcconfig"; sourceTree = "<group>"; };
 		9B0B581B2F19959000962724 /* Walking For Rochester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Walking For Rochester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BCE92072FCA196F00BAA793 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		C4A4232D6C32808612F0D047 /* libPods-Walking For Rochester.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Walking For Rochester.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA3CB107732DD30B9EB903B9 /* Pods-Walking For Rochester.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Walking For Rochester.debug.xcconfig"; path = "Target Support Files/Pods-Walking For Rochester/Pods-Walking For Rochester.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -36,17 +45,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BCE92082FCA196F00BAA793 /* WebKit.framework in Frameworks */,
+				9A0D7CF18ED4BAA477D3CA6B /* libPods-Walking For Rochester.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CEB6FB226BFA223CC85372D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EA3CB107732DD30B9EB903B9 /* Pods-Walking For Rochester.debug.xcconfig */,
+				88952BD606AADF644029C033 /* Pods-Walking For Rochester.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		9B0B58122F19959000962724 = {
 			isa = PBXGroup;
 			children = (
 				9B0B581D2F19959000962724 /* Walking For Rochester */,
 				9B0B581C2F19959000962724 /* Products */,
+				5CEB6FB226BFA223CC85372D /* Pods */,
+				CE18C726C630E73D04F5F99D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +80,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		CE18C726C630E73D04F5F99D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BCE92072FCA196F00BAA793 /* WebKit.framework */,
+				C4A4232D6C32808612F0D047 /* libPods-Walking For Rochester.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -65,9 +96,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9B0B58332F19959300962724 /* Build configuration list for PBXNativeTarget "Walking For Rochester" */;
 			buildPhases = (
+				712D0FE3E9F95BD9E01AB61C /* [CP] Check Pods Manifest.lock */,
 				9B0B58172F19959000962724 /* Sources */,
 				9B0B58182F19959000962724 /* Frameworks */,
 				9B0B58192F19959000962724 /* Resources */,
+				76D68F745A27B67B466E9160 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -77,8 +110,6 @@
 				9B0B581D2F19959000962724 /* Walking For Rochester */,
 			);
 			name = "Walking For Rochester";
-			packageProductDependencies = (
-			);
 			productName = "Walking For Rochester";
 			productReference = 9B0B581B2F19959000962724 /* Walking For Rochester.app */;
 			productType = "com.apple.product-type.application";
@@ -106,6 +137,8 @@
 			);
 			mainGroup = 9B0B58122F19959000962724;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9B0B581C2F19959000962724 /* Products */;
 			projectDirPath = "";
@@ -126,6 +159,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		712D0FE3E9F95BD9E01AB61C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Walking For Rochester-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		76D68F745A27B67B466E9160 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Walking For Rochester/Pods-Walking For Rochester-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Walking For Rochester/Pods-Walking For Rochester-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Walking For Rochester/Pods-Walking For Rochester-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9B0B58172F19959000962724 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -139,26 +218,40 @@
 /* Begin XCBuildConfiguration section */
 		9B0B58342F19959300962724 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA3CB107732DD30B9EB903B9 /* Pods-Walking For Rochester.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7R4NEJLCH2;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7R4NEJLCH2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Walking For Rochester/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Walking For Rochester/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Walking for Rochester uses your camera to allow you to take a picture of the litter you collected during your walk.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Walking for Rochester uses continuous access to your precise location only while recording a walk.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Walking for Rochester uses your precise location to display your position while using the app.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hasiuk.apps.Walking-For-Rochester";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hasiuk.apps.wfr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Walking For Rochester Development";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -167,26 +260,40 @@
 		};
 		9B0B58352F19959300962724 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88952BD606AADF644029C033 /* Pods-Walking For Rochester.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7R4NEJLCH2;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 7R4NEJLCH2;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Walking For Rochester/PrefixHeader.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Walking For Rochester/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Walking for Rochester uses your camera to allow you to take a picture of the litter you collected during your walk.";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Walking for Rochester uses continuous access to your precise location only while recording a walk.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Walking for Rochester uses your precise location to display your position while using the app.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hasiuk.apps.Walking-For-Rochester";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hasiuk.apps.wfr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Walking For Rochester Development";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
