@@ -5,9 +5,9 @@
 //  Created by Lee Hasiuk on 1/21/26.
 //
 
-#import <UIKit/UIKit.h>
+#import "KeyboardFixViewController.h"
 
-@interface ForgotPasswordEmailViewController : UIViewController
+@interface ForgotPasswordEmailViewController : KeyboardFixViewController
 
 @end
 

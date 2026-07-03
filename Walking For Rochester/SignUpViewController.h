@@ -5,8 +5,8 @@
 //  Created by Lee Hasiuk on 3/19/26.
 //
 
-#import <UIKit/UIKit.h>
+#import "KeyboardFixViewController.h"
 
-@interface SignUpViewController : UIViewController
+@interface SignUpViewController : KeyboardFixViewController
 
 @end

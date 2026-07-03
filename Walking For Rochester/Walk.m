@@ -63,13 +63,11 @@ data class WalkData(
         _fileUrl = fileUrl;
         const char *path = [fileUrl.path UTF8String];
         _file = fopen(path, "r+");
-        if (_file != NULL) {
-            if (fseek(_file, -1, SEEK_END) != 0 || ftell(_file) <= 0 || fgetc(_file) != '\n' || fseek(_file, 0, SEEK_SET) != 0) {
-                fclose(_file);
-                _file = NULL;
-            }
+        if (_file != NULL && (fseek(_file, -1, SEEK_END) != 0 || ftell(_file) <= 0 || fgetc(_file) != '\n' || fseek(_file, 0, SEEK_SET) != 0 || ![self restore])) {
+            fclose(_file);
+            _file = NULL;
         }
-        if (_file == NULL || ![self restore]) {
+        if (_file == NULL) {
             _file = fopen(path, "w");
             _mPath = [NSMutableArray arrayWithCapacity:kInitialPathCapacity];
         }
@@ -101,7 +99,8 @@ data class WalkData(
     _startTime = nil;
     _endTime = nil;
     [_mPath removeAllObjects];
-    _file = freopen([_fileUrl.path UTF8String], "w", _file);
+    if (_file != NULL)
+        _file = freopen([_fileUrl.path UTF8String], "w", _file);
     NSURL *imageFileUrl = [self imageFileUrl];
     if (imageFileUrl != nil) {
         [[NSFileManager defaultManager] removeItemAtURL:imageFileUrl error:NULL];

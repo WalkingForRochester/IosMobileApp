@@ -8,17 +8,6 @@
 #import "APIObject.h"
 #import "APIManager.h"
 
-
-/*
- "place": 1,
-     "accountId": 10000319,
-     "firstName": "Kristie",
-     "nickname": "Kristie",
-     "imgUrl": "https:\/\/walkingforrochester.com\/images\/default_img.png",
-     "collection": "104",
-     "distance": 60.414888326027594,
-     "duration": 180117463
- */
 @interface LeaderboardEntry : APIObject
 
 @property (strong, nonatomic, readonly) NSNumber *place;

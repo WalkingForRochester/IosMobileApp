@@ -42,6 +42,8 @@ typedef enum {
 
 @implementation ProfileViewController
 
+@dynamic hiddenBackButton;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -176,6 +178,16 @@ typedef enum {
         ProfileEditorViewController *editor = (ProfileEditorViewController *)target;
         editor.profileViewController = self;
     }
+}
+
+- (void)setHiddenBackButton:(BOOL)hiddenBackButton
+{
+    [MainViewController sharedMainViewController].navigationController.topViewController.navigationItem.hidesBackButton = hiddenBackButton;
+}
+
+- (BOOL)hiddenBackButton
+{
+    return [MainViewController sharedMainViewController].navigationController.topViewController.navigationItem.hidesBackButton;
 }
 
 @end

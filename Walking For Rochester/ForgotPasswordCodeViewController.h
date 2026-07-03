@@ -5,11 +5,11 @@
 //  Created by Lee Hasiuk on 4/29/26.
 //
 
-#import <UIKit/UIKit.h>
+#import "KeyboardFixViewController.h"
 
 @protocol ForgotPasswordCodeViewControllerDelegate;
 
-@interface ForgotPasswordCodeViewController : UIViewController
+@interface ForgotPasswordCodeViewController : KeyboardFixViewController
 
 @property (weak, nonatomic) id<ForgotPasswordCodeViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSString *email;

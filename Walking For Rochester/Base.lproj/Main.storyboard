@@ -345,8 +345,9 @@
                     <navigationItem key="navigationItem" id="t4Y-y5-2Dm"/>
                     <connections>
                         <outlet property="emailView" destination="bOB-Ui-Dz6" id="aqd-bT-QT5"/>
+                        <outlet property="keyboardLayoutConstraint" destination="fAv-Ya-aQg" id="v9f-dS-bc1"/>
                         <outlet property="passwordView" destination="iqc-5J-kpL" id="4nS-3y-PvE"/>
-                        <outlet property="scrollView" destination="Ka7-bk-zYf" id="ALd-n4-SWd"/>
+                        <outlet property="scrollView" destination="Ka7-bk-zYf" id="sMa-Dp-Gni"/>
                         <outlet property="stackView" destination="GSU-c2-7oB" id="5Wg-2V-U0d"/>
                     </connections>
                 </viewController>
@@ -516,6 +517,8 @@
                     <navigationItem key="navigationItem" id="qCO-Sq-IC9"/>
                     <connections>
                         <outlet property="emailView" destination="EZY-N2-z4k" id="3zM-tz-rhw"/>
+                        <outlet property="keyboardLayoutConstraint" destination="w13-li-J5L" id="2SM-I2-6z2"/>
+                        <outlet property="scrollView" destination="Jp4-6Y-Xnz" id="G9F-Rj-k2I"/>
                         <segue destination="eF7-PY-ZJI" kind="show" identifier="ForgotPasswordCodeViewControllerShowSegue" id="FBc-os-Tno"/>
                     </connections>
                 </viewController>
@@ -651,6 +654,8 @@
                     <connections>
                         <outlet property="codeField" destination="57D-Bb-Evj" id="hyG-IU-5jB"/>
                         <outlet property="emailLabel" destination="www-wg-BJS" id="KAo-JE-FU2"/>
+                        <outlet property="keyboardLayoutConstraint" destination="gm6-fe-Uwp" id="ERF-Vh-rZw"/>
+                        <outlet property="scrollView" destination="vah-nV-zcV" id="K8J-Gw-klm"/>
                         <segue destination="UgW-Rz-Mxw" kind="show" identifier="ChangePasswordViewControllerShowSegue" id="pQa-f3-SaN"/>
                     </connections>
                 </viewController>
@@ -814,7 +819,9 @@
                     <connections>
                         <outlet property="confirmPasswordView" destination="mN2-qJ-cGt" id="MLP-Kr-AAK"/>
                         <outlet property="emailLabel" destination="No8-15-1cj" id="7Q3-rt-K6I"/>
+                        <outlet property="keyboardLayoutConstraint" destination="Li9-OQ-Rus" id="NiL-0v-hw0"/>
                         <outlet property="passwordView" destination="tzP-Pu-z9Q" id="mLG-Je-bvM"/>
+                        <outlet property="scrollView" destination="nZ2-w3-FL7" id="Dkz-Xx-9T3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e7n-xY-Ubv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2083,9 +2090,11 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         <outlet property="displayNameView" destination="S6p-fR-TlX" id="JNS-H4-R6G"/>
                         <outlet property="emailView" destination="oTF-IG-SED" id="W8N-SM-MNs"/>
                         <outlet property="firstNameView" destination="Xnk-ub-Kmg" id="xeg-bs-cZx"/>
+                        <outlet property="keyboardLayoutConstraint" destination="ck4-Ow-ypq" id="67G-DH-fVl"/>
                         <outlet property="lastNameView" destination="gRs-H1-Kdj" id="0Ft-9U-dFV"/>
                         <outlet property="passwordView" destination="bo3-mE-oZF" id="9Ow-Ah-ESE"/>
                         <outlet property="phoneView" destination="Zsj-Bf-GjN" id="C7s-VJ-wh0"/>
+                        <outlet property="scrollView" destination="vDM-8G-YTM" id="XSD-eZ-d0v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eJQ-Tr-iOq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2291,7 +2300,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 <rect key="frame" x="0.0" y="502" width="340" height="48"/>
                                                 <items>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="bcz-2a-Mg6"/>
-                                                    <barButtonItem title="Item" style="plain" id="kfz-bs-koY">
+                                                    <barButtonItem title="Item" style="plain" id="kfz-bs-koY" customClass="CustomBarButtonItem">
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="hidesSharedBackground" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
@@ -2300,7 +2309,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                         </connections>
                                                     </barButtonItem>
                                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="iz3-5F-zii"/>
-                                                    <barButtonItem title="Item" id="gmu-9x-8Ru">
+                                                    <barButtonItem title="Item" id="gmu-9x-8Ru" customClass="CustomBarButtonItem">
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="hidesSharedBackground" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
@@ -2363,8 +2372,10 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         <outlet property="communityServiceSwitch" destination="fCx-rY-tjW" id="HBQ-5s-Gqz"/>
                         <outlet property="displayNameView" destination="apR-dP-yUa" id="Sh0-o6-Mq3"/>
                         <outlet property="emailView" destination="No6-6P-UhW" id="614-IE-g4Q"/>
+                        <outlet property="keyboardLayoutConstraint" destination="qn8-3f-fpK" id="xGg-Jq-U01"/>
                         <outlet property="phoneView" destination="SfN-Of-sfa" id="vHx-Lc-zRV"/>
                         <outlet property="profileImageView" destination="xYE-wW-SkD" id="MD7-ej-CQN"/>
+                        <outlet property="scrollView" destination="CNU-b3-lqW" id="mak-S5-kgM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbt-Yn-zU1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2425,7 +2436,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="person.crop.circle.fill" catalog="system" id="kfO-gA-dre">
                                             <connections>
-                                                <segue destination="lWu-QO-DSb" kind="show" id="OFj-PW-BsX"/>
+                                                <segue destination="lWu-QO-DSb" kind="show" id="a7M-Ms-RQa"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -2455,7 +2466,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                         <state key="normal" title="Start" image="figure.walk" catalog="system">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected" title="Stop" image="flag.pattern.checkered" catalog="system"/>
+                                        <state key="selected" title="Stop" image="flag.pattern.checkered"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="12"/>
@@ -2648,7 +2659,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
     <resources>
         <image name="chart.bar.fill" catalog="system" width="128" height="90"/>
         <image name="figure.walk" catalog="system" width="94" height="128"/>
-        <image name="flag.pattern.checkered" catalog="system" width="128" height="121"/>
+        <image name="flag.pattern.checkered" width="9" height="10"/>
         <image name="image_camera" width="76" height="76"/>
         <image name="image_rainbow_bg" width="414" height="896"/>
         <image name="info.circle.fill" catalog="system" width="128" height="123"/>

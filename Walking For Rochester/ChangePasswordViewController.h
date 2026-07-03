@@ -5,9 +5,9 @@
 //  Created by Lee Hasiuk on 4/30/26.
 //
 
-#import <UIKit/UIKit.h>
+#import "KeyboardFixViewController.h"
 
-@interface ChangePasswordViewController : UIViewController
+@interface ChangePasswordViewController : KeyboardFixViewController
 
 @property (strong, nonatomic) NSString *email;
 

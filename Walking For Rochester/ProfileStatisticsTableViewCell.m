@@ -55,8 +55,8 @@
     _type = type;
     if (type == kProfileStatisticsTableViewCellTypeDistance) {
         _titleLabel.text = @"Distances";
-        _lastWalkStatsLabel.text = [self.class formatDistanceInMeters:profile.distance];
-        _overallStatsLabel.text = [self.class formatDistanceInMeters:profile.totalDistance];
+        _lastWalkStatsLabel.text = [self.class formatDistanceInMiles:profile.distance];
+        _overallStatsLabel.text = [self.class formatDistanceInMiles:profile.totalDistance];
     }
     else {
         _titleLabel.text = @"Durations";

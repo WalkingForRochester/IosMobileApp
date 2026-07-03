@@ -132,9 +132,7 @@ typedef enum {
     if ((self = [super init]) != nil) {
         _session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
         _callsInProgress = [NSMutableSet setWithCapacity:5];
-        //[[NSUserDefaults standardUserDefaults] removeObjectForKey:kKeyAccountId]; // XXX for testing
         APIManagerAccountID *accountId = [[NSUserDefaults standardUserDefaults] objectForKey:kKeyAccountId];
-        //Post missing.accountId = @(10000399);    // XXX DO NOT INCLUDE IN APP
         if ([accountId isKindOfClass:[APIManagerAccountID class]])
             _accountId = accountId;
     }

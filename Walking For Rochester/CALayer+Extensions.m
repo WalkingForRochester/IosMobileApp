@@ -5,26 +5,19 @@
 //  Created by Lee Hasiuk on 5/15/26.
 //
 
+#import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
+#import "CALayer+Extensions.h"
 
 @implementation CALayer (BorderCustom)
 
-
-// Your custom implementation
-- (void)custom_setBorderColor:(CGColorRef)color {
-    // 1. Run your custom logic here
-    NSLog(@"Intercepted border color change!");
-
-    // 2. Call the original implementation
-    // This looks like an infinite loop, but because of the swap,
-    // it actually calls the original 'setBorderColor:'
+- (void)custom_setBorderColor:(CGColorRef)color
+{
     [self custom_setBorderColor:color];
 }
 
 @end
-#import <UIKit/UIKit.h>
-#import "CALayer+Extensions.h"
 
 @implementation CALayer (Extensions)
 

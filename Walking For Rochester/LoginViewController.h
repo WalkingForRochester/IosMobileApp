@@ -5,8 +5,8 @@
 //  Created by Lee Hasiuk on 1/16/26.
 //
 
-#import <UIKit/UIKit.h>
+#import "KeyboardFixViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : KeyboardFixViewController
 
 @end

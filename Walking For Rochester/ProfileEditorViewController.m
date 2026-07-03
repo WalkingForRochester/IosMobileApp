@@ -51,6 +51,12 @@
     _communityServiceSwitch.on = _profile.communityService;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    _profileViewController.hiddenBackButton = YES;
+}
+
 - (BOOL)signUpFieldViewIsContentValid:(SignUpFieldView *)signUpFieldView text:(NSString *)text
 {
     if (signUpFieldView == _emailView)
@@ -143,7 +149,7 @@
 
 - (IBAction)doCancel:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self pop];
 }
 
 - (IBAction)doSave:(id)sender
@@ -176,10 +182,16 @@
         [[APIManager sharedAPIManager] updateProfileWith:update completion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [weakSelf.profileViewController refresh];
-                [weakSelf.navigationController popViewControllerAnimated:YES];
+                [weakSelf pop];
             }
         }];
     }
+}
+
+- (void)pop
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    _profileViewController.hiddenBackButton = NO;
 }
 
 @end

@@ -5,11 +5,11 @@
 //  Created by Lee Hasiuk on 5/18/26.
 //
 
-#import <UIKit/UIKit.h>
+#import "KeyboardFixViewController.h"
 
 @class ProfileViewController;
 
-@interface ProfileEditorViewController : UIViewController
+@interface ProfileEditorViewController : KeyboardFixViewController
 
 + (NSData *)compressImage:(UIImage *)image targetDimension:(NSUInteger)targetDimension quality:(CGFloat)quality compressedImagePtr:(UIImage **)compressedImagePtr;
 

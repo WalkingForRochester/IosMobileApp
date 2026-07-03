@@ -1,13 +1,13 @@
 //
-//  UIBarButtonItem+Extensions.m
+//  CustomBarButtonItem.m
 //  Walking For Rochester
 //
 //  Created by Lee Hasiuk on 5/20/26.
 //
 
-#import "UIBarButtonItem+Extensions.h"
+#import "CustomBarButtonItem.h"
 
-@implementation UIBarButtonItem (Extensions)
+@implementation CustomBarButtonItem
 
 @dynamic customViewForInterfaceBuilder;
 
@@ -19,6 +19,13 @@
 - (UIView *)customViewForInterfaceBuilder
 {
     return self.customView;
+}
+
+- (void)setHidesSharedBackground:(BOOL)hidesSharedBackground
+{
+    if (@available(iOS 26.0, *)) {
+        [super setHidesSharedBackground:hidesSharedBackground];
+    }
 }
 
 @end

@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet SignUpFieldView *emailView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *passwordView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
 
 @end

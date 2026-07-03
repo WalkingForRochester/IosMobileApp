@@ -136,20 +136,15 @@ typedef enum {
 - (id)initWithCoder:(NSCoder *)coder
 {
     if ((self = [super initWithCoder:coder]) != nil) {
-        NSArray<NSURL *> *urls = [[NSFileManager defaultManager] URLsForDirectory:NSApplicationSupportDirectory inDomains:NSUserDomainMask];
-        if (urls.count > 0) {
-            NSURL *pathUrl = urls.firstObject;
-            NSURL *walkFileUrl = [pathUrl URLByAppendingPathComponent:kWalkFileName];
-            NSLog(@"Walk file url: %@", walkFileUrl);
-            NSArray<WalkLocationFieldInfo *> *fields = @[
-                [WalkLocationFieldInfo fieldInfoWithType:kWalkLocationFieldTypeLatitude decimalDigits:6],
-                [WalkLocationFieldInfo fieldInfoWithType:kWalkLocationFieldTypeLongitude decimalDigits:6],
-                [WalkLocationFieldInfo fieldInfoWithType:kWalkLocationFieldTypeTimestamp decimalDigits:3]
-            ];
-            _walk = [[Walk alloc] initWithFile:walkFileUrl persistedFields:fields];
-            //[self flushWalk];
-            NSLog(@"walk state is %d, path length is %lu", (int)_walk.state, _walk.locationCount);
-        }
+        NSURL *pathUrl = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:NULL];
+        NSURL *walkFileUrl = [pathUrl URLByAppendingPathComponent:kWalkFileName];
+        NSArray<WalkLocationFieldInfo *> *fields = @[
+            [WalkLocationFieldInfo fieldInfoWithType:kWalkLocationFieldTypeLatitude decimalDigits:6],
+            [WalkLocationFieldInfo fieldInfoWithType:kWalkLocationFieldTypeLongitude decimalDigits:6],
+            [WalkLocationFieldInfo fieldInfoWithType:kWalkLocationFieldTypeTimestamp decimalDigits:3]
+        ];
+        _walk = [[Walk alloc] initWithFile:walkFileUrl persistedFields:fields];
+        //[self flushWalk];
     }
     return self;
 }
@@ -395,6 +390,13 @@ typedef enum {
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
+    /*
+    static NSDate *previous;
+    NSDate *now = [NSDate date];
+    if (previous != nil)
+        NSLog(@"update interval %f", [now timeIntervalSinceDate:previous]);
+    previous = now;
+     */
     if (locations.count != 0) {
         CLLocation *location = locations[0];
         CLLocationDistance cameraMotionDistance = 0;
