@@ -106,6 +106,7 @@ data class WalkData(
         [[NSFileManager defaultManager] removeItemAtURL:imageFileUrl error:NULL];
         _imageFileName = nil;
     }
+    _bagCount = nil;
 }
 
 + (BOOL)restoreStateFromDictionary:(NSDictionary *)dictionary lastStatePtr:(WalkState *)lastStatePtr lastStartPtr:(NSDate **)lastStartPtr lastEndPtr:(NSDate **)lastEndPtr bagCountPtr:(NSNumber **)bagCountPtr lastImageFileNamePtr:(NSString **)lastImageFileNamePtr locationFieldsPtr:(NSArray<WalkLocationFieldInfo *> **)locationFieldsPtr;
