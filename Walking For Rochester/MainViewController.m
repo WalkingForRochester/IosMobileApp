@@ -105,6 +105,8 @@ static MainViewController __weak *s_sharedMainViewController;
     _sliderViewRevealConstraint.constant = 0;
     
     _tableView.panGestureRecognizer.cancelsTouchesInView = NO;
+    
+    _isSmallScreen = [UIScreen mainScreen].bounds.size.height <= 700;
 }
 
 - (void)viewDidLayoutSubviews

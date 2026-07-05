@@ -47,6 +47,11 @@ typedef enum {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if ([MainViewController sharedMainViewController].isSmallScreen) {
+        _tableView.contentInset = UIEdgeInsetsMake(-20, 0, 0, 0);
+        _tableView.sectionHeaderHeight /= 2;
+        _tableView.sectionFooterHeight /= 2;
+    }
     [self refresh];
 }
 
