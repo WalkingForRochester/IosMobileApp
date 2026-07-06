@@ -2132,7 +2132,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                 <rect key="frame" x="25" y="0.0" width="340" height="716"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XOl-5m-mDD">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="575"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="558"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7N-oL-fsA">
                                                 <rect key="frame" x="0.0" y="0.0" width="340" height="271"/>
@@ -2300,32 +2300,92 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                     <constraint firstAttribute="height" constant="25" id="0ni-Xb-Rut"/>
                                                 </constraints>
                                             </view>
-                                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5K-Iu-GrY">
-                                                <rect key="frame" x="0.0" y="502" width="340" height="48"/>
-                                                <items>
-                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="bcz-2a-Mg6"/>
-                                                    <barButtonItem title="Item" style="plain" id="kfz-bs-koY" customClass="CustomBarButtonItem">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="hTu-SP-KIN">
+                                                <rect key="frame" x="0.0" y="502" width="340" height="31"/>
+                                                <subviews>
+                                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gW9-1z-Q7N">
+                                                        <rect key="frame" x="0.0" y="0.0" width="24" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesSharedBackground" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uyh-7i-4bX">
+                                                        <rect key="frame" x="55.333333333333336" y="0.0" width="71.333333333333314" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Cancel">
+                                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                                            <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <outlet property="customViewForInterfaceBuilder" destination="uyh-7i-4bX" id="3xh-tH-7ax"/>
+                                                            <action selector="doCancel:" destination="UHK-8Y-fpv" eventType="touchUpInside" id="MoK-Cs-WYf"/>
                                                         </connections>
-                                                    </barButtonItem>
-                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="iz3-5F-zii"/>
-                                                    <barButtonItem title="Item" id="gmu-9x-8Ru" customClass="CustomBarButtonItem">
+                                                    </button>
+                                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w8a-3k-wHN">
+                                                        <rect key="frame" x="158" y="0.0" width="24" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hidesSharedBackground" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KSJ-G9-liM">
+                                                        <rect key="frame" x="220.33333333333334" y="0.0" width="57.333333333333343" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" red="0.4039215686" green="0.31372549020000001" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="Save">
+                                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </buttonConfiguration>
                                                         <connections>
-                                                            <outlet property="customViewForInterfaceBuilder" destination="KSJ-G9-liM" id="3Wp-j2-l20"/>
+                                                            <action selector="doSave:" destination="UHK-8Y-fpv" eventType="touchUpInside" id="lwD-aB-B7j"/>
                                                         </connections>
-                                                    </barButtonItem>
-                                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="E8P-bM-1KC"/>
-                                                </items>
-                                            </toolbar>
+                                                    </button>
+                                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Emy-4Z-D0p">
+                                                        <rect key="frame" x="316" y="0.0" width="24" height="31"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9C-jN-gWQ">
-                                                <rect key="frame" x="0.0" y="550" width="340" height="25"/>
+                                                <rect key="frame" x="0.0" y="533" width="340" height="25"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="XzY-bM-U4c"/>
@@ -2383,40 +2443,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cbt-Yn-zU1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uyh-7i-4bX">
-                    <rect key="frame" x="0.0" y="0.0" width="71.333333333333329" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Cancel">
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
-                        <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </buttonConfiguration>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
-                            <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="doCancel:" destination="UHK-8Y-fpv" eventType="touchUpInside" id="MoK-Cs-WYf"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KSJ-G9-liM">
-                    <rect key="frame" x="0.0" y="0.0" width="343" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.4039215686" green="0.31372549020000001" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Save">
-                        <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
-                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </buttonConfiguration>
-                    <connections>
-                        <action selector="doSave:" destination="UHK-8Y-fpv" eventType="touchUpInside" id="lwD-aB-B7j"/>
-                    </connections>
-                </button>
             </objects>
             <point key="canvasLocation" x="998" y="2663"/>
         </scene>
