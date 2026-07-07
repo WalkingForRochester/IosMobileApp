@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "image_trash.png",
+      "filename" : "ic_delete_24dp.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "image_trash@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "image_trash@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

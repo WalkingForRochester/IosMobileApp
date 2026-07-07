@@ -31,12 +31,12 @@ typedef enum {
 
 - (void)start;
 - (void)stop;
-- (void)addLocation:(CLLocation *)location;
+- (BOOL)addLocation:(CLLocation *)location;
 - (void)saveImageData:(NSData *)imageData fileName:(NSString *)fileName completion:(void (^)(BOOL succeeded))completion;
 - (void)readImageDataWithCompletion:(void (^)(NSData *data, UIImage *image))completion;
 - (void)flush;
 
-@property (assign, nonatomic) WalkState state;
+@property (assign, nonatomic, readonly) WalkState state;
 @property (strong, nonatomic, readonly) NSDate *startTime;
 @property (strong, nonatomic, readonly) NSDate *endTime;
 @property (strong, nonatomic) NSNumber *bagCount;

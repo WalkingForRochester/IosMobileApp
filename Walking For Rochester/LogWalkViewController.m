@@ -14,6 +14,7 @@
 #import "Walk.h"
 #import "WalkLocationFieldInfo.h"
 #import "FinishWalkViewController.h"
+#import "SpoofDetectedViewController.h"
 
 #define kMinZoom 9
 #define kMaxZoom 20
@@ -191,14 +192,15 @@ typedef enum {
 - (void)addLocationToWalk:(CLLocation *)location
 {
     NSLog(@"adding to walk path: %f, %f", location.coordinate.latitude, location.coordinate.longitude);
-    [_walk addLocation:location];
-    NSUInteger locationCount = _walk.locationCount;
-    NSAssert(locationCount > 1, @"Expected more than one location in walk");
-    if (locationCount == 2)
-        [self addWalkPath];
-    else {
-        [_walkPath addCoordinate:location.coordinate];
-        _walkPolyline.path = _walkPath;
+    if ([_walk addLocation:location]) {
+        NSUInteger locationCount = _walk.locationCount;
+        NSAssert(locationCount > 1, @"Expected more than one location in walk");
+        if (locationCount == 2)
+            [self addWalkPath];
+        else {
+            [_walkPath addCoordinate:location.coordinate];
+            _walkPolyline.path = _walkPath;
+        }
     }
 }
 
@@ -231,8 +233,11 @@ typedef enum {
         _locationManager.delegate = self;
         [self updateLocationAuthorizationStatusForce:YES];
     }
-    if (_walk.state == kWalkStateComplete)
+    WalkState state = _walk.state;
+    if (state == kWalkStateComplete)
         [self showFinishWalkScreen];
+    else if (state == kWalkStateMockLocationDetected)
+        [self spoofDetected];
 }
 
 - (void)viewDidLayoutSubviews
@@ -413,8 +418,15 @@ typedef enum {
             if (!_userMovedMap)
                 cameraMotionDistance = [_lastLocation distanceFromLocation:location];
             _lastLocation = location;
-            if (self.walkInProgress)
+            if (self.walkInProgress) {
                 [self addLocationToWalk:location];
+                WEAK_SELF_PTR;
+                if (_walk.state == kWalkStateMockLocationDetected) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakSelf spoofDetected];
+                    });
+                }
+            }
         }
         if (cameraMotionDistance != 0) {
             GMSCameraUpdate *update = [GMSCameraUpdate setTarget:location.coordinate];
@@ -423,6 +435,17 @@ typedef enum {
             else
                 [_mapView moveCamera:update];
         }
+    }
+}
+
+- (void)spoofDetected
+{
+    if (_walk.state == kWalkStateMockLocationDetected) {
+        UIViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SpoofDetectedViewController"];
+        [self presentViewController:vc animated:YES completion:^{
+            self.walkInProgress = NO;
+            [self flushWalk];
+        }];
     }
 }
 
@@ -586,8 +609,10 @@ typedef enum {
 {
     if (walkInProgress) {
         [_walk start];
-        [_walk addLocation:_lastLocation];
-        [self addWalkStartMarker];
+        if ([_walk addLocation:_lastLocation])
+            [self addWalkStartMarker];
+        else
+            [self spoofDetected];
     }
 }
 

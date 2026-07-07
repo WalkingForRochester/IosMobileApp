@@ -860,7 +860,7 @@
                                                         <constraint firstAttribute="width" constant="44" id="JJA-uN-RpF"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="image_edit"/>
                                                     <connections>
                                                         <segue destination="UHK-8Y-fpv" kind="show" id="OxL-4G-uim"/>
                                                     </connections>
@@ -872,7 +872,7 @@
                                                         <constraint firstAttribute="width" constant="44" id="NB5-gg-1Qu"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="image_share"/>
                                                     <connections>
                                                         <action selector="doShare:" destination="ndW-n4-UC1" eventType="touchUpInside" id="HKT-nJ-cQh"/>
                                                     </connections>
@@ -1142,8 +1142,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rnf-oe-mTE">
                                 <rect key="frame" x="20" y="244.66666666666663" width="350" height="355"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="info.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="mno-w6-PSA">
-                                        <rect key="frame" x="163" y="20.666666666666693" width="24" height="22.666666666666664"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_info" translatesAutoresizingMaskIntoConstraints="NO" id="mno-w6-PSA">
+                                        <rect key="frame" x="163" y="20.000000000000028" width="24" height="24"/>
                                         <color key="tintColor" systemColor="systemGrayColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="24" id="6gW-LG-w50"/>
@@ -2459,12 +2459,12 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem id="VHa-CI-wMI">
-                                        <barButtonItem key="leftBarButtonItem" image="line.3.horizontal" catalog="system" id="jyP-b7-USY">
+                                        <barButtonItem key="leftBarButtonItem" image="image_menu" id="jyP-b7-USY">
                                             <connections>
                                                 <action selector="doShowSlider:" destination="CXt-Ai-pha" id="Xwq-m8-iam"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="person.crop.circle.fill" catalog="system" id="kfO-gA-dre">
+                                        <barButtonItem key="rightBarButtonItem" image="image_user" id="kfO-gA-dre">
                                             <connections>
                                                 <segue destination="lWu-QO-DSb" kind="show" id="a7M-Ms-RQa"/>
                                             </connections>
@@ -2493,10 +2493,10 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
-                                        <state key="normal" title="Start" image="figure.walk" catalog="system">
+                                        <state key="normal" title="Start" image="image_walk">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
-                                        <state key="selected" title="Stop" image="flag.pattern.checkered"/>
+                                        <state key="selected" title="Stop" image="image_flag_checkered"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="12"/>
@@ -2535,9 +2535,9 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                 <rect key="frame" x="0.0" y="727" width="390" height="117"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
-                                    <tabBarItem title="Log a Walk" image="figure.walk" catalog="system" id="ZAT-Wu-rxe"/>
-                                    <tabBarItem tag="1" title="Leaderboard" image="chart.bar.fill" catalog="system" id="BEQ-BM-H42"/>
-                                    <tabBarItem tag="2" title="News Feed" image="newspaper.fill" catalog="system" id="xhK-xp-VfK"/>
+                                    <tabBarItem title="Log a Walk" image="image_walk" id="ZAT-Wu-rxe"/>
+                                    <tabBarItem tag="1" title="Leaderboard" image="image_bar_chart" id="BEQ-BM-H42"/>
+                                    <tabBarItem tag="2" title="News Feed" image="image_newspaper" id="xhK-xp-VfK"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="CXt-Ai-pha" id="VG9-f2-mLN"/>
@@ -2685,20 +2685,124 @@ Please take a picture of the litter you collected, or where you walked.</string>
             </objects>
             <point key="canvasLocation" x="-1006" y="135"/>
         </scene>
+        <!--Spoof Detected View Controller-->
+        <scene sceneID="vPw-lp-qIh">
+            <objects>
+                <viewController storyboardIdentifier="SpoofDetectedViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overFullScreen" id="AmL-qH-ag4" customClass="SpoofDetectedViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0xN-Kh-cWe">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIR-in-WNc">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gP-id-TUb">
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain"/>
+                                        <connections>
+                                            <action selector="doUnderstood:" destination="AmL-qH-ag4" eventType="touchUpInside" id="8f8-6R-XXe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="3gP-id-TUb" firstAttribute="leading" secondItem="hIR-in-WNc" secondAttribute="leading" id="2Vi-mh-TJ3"/>
+                                    <constraint firstAttribute="trailing" secondItem="3gP-id-TUb" secondAttribute="trailing" id="XGB-xT-uQq"/>
+                                    <constraint firstItem="3gP-id-TUb" firstAttribute="top" secondItem="hIR-in-WNc" secondAttribute="top" id="bma-8w-jg9"/>
+                                    <constraint firstAttribute="bottom" secondItem="3gP-id-TUb" secondAttribute="bottom" id="rSf-ny-dAz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLb-9S-Bec">
+                                <rect key="frame" x="20" y="291.66666666666669" width="350" height="261.00000000000006"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_warning" translatesAutoresizingMaskIntoConstraints="NO" id="ijk-W4-d2E">
+                                        <rect key="frame" x="163" y="20" width="24" height="24"/>
+                                        <color key="tintColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="DtX-xa-uff"/>
+                                            <constraint firstAttribute="height" constant="24" id="jm7-h2-W1J"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spoof location detected" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPN-R1-eD2">
+                                        <rect key="frame" x="25" y="64" width="300" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We've detected you're spoofing your location and ended your walk." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsv-pK-VVE">
+                                        <rect key="frame" x="25" y="113.99999999999999" width="300" height="31.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOk-Sf-uZT">
+                                        <rect key="frame" x="248.66666666666671" y="195.33333333333331" width="76.333333333333343" height="15.666666666666657"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Understood">
+                                            <fontDescription key="titleFontDescription" type="boldSystem" pointSize="13"/>
+                                            <directionalEdgeInsets key="contentInsets" top="0.0" leading="0.01" bottom="0.0" trailing="0.01"/>
+                                            <color key="baseForegroundColor" red="0.29803921568627451" green="0.36862745098039218" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="doUnderstood:" destination="AmL-qH-ag4" eventType="touchUpInside" id="aOr-uu-prL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="Zsv-pK-VVE" firstAttribute="leading" secondItem="GLb-9S-Bec" secondAttribute="leading" constant="25" id="490-nr-iay"/>
+                                    <constraint firstItem="EOk-Sf-uZT" firstAttribute="top" secondItem="Zsv-pK-VVE" secondAttribute="bottom" constant="50" id="7IQ-YK-525"/>
+                                    <constraint firstItem="CPN-R1-eD2" firstAttribute="leading" secondItem="GLb-9S-Bec" secondAttribute="leading" constant="25" id="8GG-4M-EhN"/>
+                                    <constraint firstItem="ijk-W4-d2E" firstAttribute="centerX" secondItem="GLb-9S-Bec" secondAttribute="centerX" id="9yF-hY-4o7"/>
+                                    <constraint firstItem="Zsv-pK-VVE" firstAttribute="top" secondItem="CPN-R1-eD2" secondAttribute="bottom" constant="20" id="OSZ-oW-QMg"/>
+                                    <constraint firstItem="ijk-W4-d2E" firstAttribute="top" secondItem="GLb-9S-Bec" secondAttribute="top" constant="20" id="S5k-qd-Vlv"/>
+                                    <constraint firstAttribute="trailing" secondItem="CPN-R1-eD2" secondAttribute="trailing" constant="25" id="h0O-uo-8lh"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zsv-pK-VVE" secondAttribute="trailing" constant="25" id="pqR-46-MdW"/>
+                                    <constraint firstAttribute="trailing" secondItem="EOk-Sf-uZT" secondAttribute="trailing" constant="25" id="vRS-Ga-oIB"/>
+                                    <constraint firstItem="CPN-R1-eD2" firstAttribute="top" secondItem="ijk-W4-d2E" secondAttribute="bottom" constant="20" id="ygc-0A-zsj"/>
+                                    <constraint firstAttribute="bottom" secondItem="EOk-Sf-uZT" secondAttribute="bottom" constant="50" id="z41-gX-iUe"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="JRg-Sk-Zh3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="hIR-in-WNc" firstAttribute="top" secondItem="0xN-Kh-cWe" secondAttribute="top" id="M5O-Y9-qeP"/>
+                            <constraint firstItem="GLb-9S-Bec" firstAttribute="centerX" secondItem="0xN-Kh-cWe" secondAttribute="centerX" id="ZlF-jP-vCL"/>
+                            <constraint firstItem="hIR-in-WNc" firstAttribute="leading" secondItem="0xN-Kh-cWe" secondAttribute="leading" id="eqa-fD-gxU"/>
+                            <constraint firstItem="GLb-9S-Bec" firstAttribute="centerY" secondItem="0xN-Kh-cWe" secondAttribute="centerY" id="kqN-FB-qSl"/>
+                            <constraint firstItem="JRg-Sk-Zh3" firstAttribute="trailing" secondItem="GLb-9S-Bec" secondAttribute="trailing" constant="20" id="mQZ-3B-KS5"/>
+                            <constraint firstAttribute="bottom" secondItem="hIR-in-WNc" secondAttribute="bottom" id="pnM-Yo-9wQ"/>
+                            <constraint firstAttribute="trailing" secondItem="hIR-in-WNc" secondAttribute="trailing" id="wCE-Vw-Gzh"/>
+                            <constraint firstItem="GLb-9S-Bec" firstAttribute="leading" secondItem="JRg-Sk-Zh3" secondAttribute="leading" constant="20" id="zfS-hS-Or4"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fim-6r-i5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2486" y="2205"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="chart.bar.fill" catalog="system" width="128" height="90"/>
-        <image name="figure.walk" catalog="system" width="94" height="128"/>
-        <image name="flag.pattern.checkered" width="9" height="10"/>
-        <image name="image_camera" width="76" height="76"/>
+        <image name="image_bar_chart" width="24" height="24"/>
+        <image name="image_camera" width="48" height="48"/>
+        <image name="image_edit" width="24" height="24"/>
+        <image name="image_flag_checkered" width="24" height="24"/>
+        <image name="image_info" width="24" height="24"/>
+        <image name="image_menu" width="24" height="24"/>
+        <image name="image_newspaper" width="24" height="24"/>
         <image name="image_rainbow_bg" width="414" height="896"/>
-        <image name="info.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
+        <image name="image_share" width="24" height="24"/>
+        <image name="image_user" width="24" height="24"/>
+        <image name="image_walk" width="24" height="24"/>
+        <image name="image_warning" width="24" height="24"/>
         <image name="map" width="128" height="128"/>
-        <image name="newspaper.fill" catalog="system" width="128" height="112"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
-        <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="square.and.arrow.up" catalog="system" width="110" height="128"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="color_walk_start_button">
             <color red="0.72549019607843135" green="0.79607843137254897" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

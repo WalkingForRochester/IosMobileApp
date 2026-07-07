@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "image_help.png",
+      "filename" : "ic_help_24dp.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "image_help@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "image_help@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

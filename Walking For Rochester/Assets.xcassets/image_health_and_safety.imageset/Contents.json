@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "image_health_and_safety.png",
+      "filename" : "ic_health_and_safety_24dp.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "image_health_and_safety@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "image_health_and_safety@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -442,12 +442,25 @@ data class WalkData(
     }
 }
 
-- (void)addLocation:(CLLocation *)location
+- (BOOL)addLocation:(CLLocation *)location
 {
     if (_state == kWalkStateInProgress) {
-        [_mPath addObject:location];
-        [self saveLocation:location timestampOffset:[_startTime timeIntervalSince1970]];
+        BOOL usingInternalGPS;
+#if TARGET_OS_SIMULATOR
+        usingInternalGPS = NO;
+#else
+        CLLocationSourceInformation *sourceInformation = location.sourceInformation;
+        usingInternalGPS = !sourceInformation.isSimulatedBySoftware && !sourceInformation.isProducedByAccessory;
+#endif
+        if (usingInternalGPS) {
+            [_mPath addObject:location];
+            [self saveLocation:location timestampOffset:[_startTime timeIntervalSince1970]];
+            return YES;
+        }
+        _state = kWalkStateMockLocationDetected;
+        [self saveState];
     }
+    return NO;
 }
 
 - (void)setBagCount:(NSNumber *)bagCount

@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "image_info.png",
+      "filename" : "ic_info_24dp.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "image_info@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "image_info@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
