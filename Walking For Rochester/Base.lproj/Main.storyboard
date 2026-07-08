@@ -1096,7 +1096,7 @@
         <scene sceneID="zl3-XP-2lk">
             <objects>
                 <tabBarController id="Clz-T9-7ou" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pkC-ve-OOP">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="pkC-ve-OOP">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1278,7 +1278,7 @@
                         <viewLayoutGuide key="safeArea" id="jOi-Fu-sIS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="uM3-fa-1xH"/>
+                    <tabBarItem key="tabBarItem" title="Log a Walk" image="image_walk" id="uM3-fa-1xH"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mH-gL-ogy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1665,7 +1665,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                             <constraint firstAttribute="trailing" secondItem="OSl-mG-rR4" secondAttribute="trailing" id="dhJ-l4-RmH"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="JN6-Ik-bsh"/>
+                    <tabBarItem key="tabBarItem" title="Leaderboard" image="image_bar_chart" id="JN6-Ik-bsh"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="OSl-mG-rR4" id="Cyv-dj-TRN"/>
@@ -1701,7 +1701,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                             <constraint firstItem="JvJ-r6-gbc" firstAttribute="top" secondItem="L5f-M9-OIq" secondAttribute="top" id="zoY-Te-Cei"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="Dbv-d5-gdl"/>
+                    <tabBarItem key="tabBarItem" title="News Feed" image="image_newspaper" id="Dbv-d5-gdl"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="webView" destination="JvJ-r6-gbc" id="cm1-OS-Ca1"/>
@@ -2449,7 +2449,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
         <!--Main View Controller-->
         <scene sceneID="5IV-9Q-Efu">
             <objects>
-                <viewController title="Log a Walk" id="CXt-Ai-pha" userLabel="Main View Controller" customClass="MainViewController" sceneMemberID="viewController">
+                <viewController id="CXt-Ai-pha" userLabel="Main View Controller" customClass="MainViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="6Bo-LU-wnr">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2485,10 +2485,10 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LG5-Xk-0Ue">
-                                <rect key="frame" x="167" y="651" width="56" height="56"/>
+                                <rect key="frame" x="167" y="788" width="56" height="56"/>
                                 <subviews>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXd-Pn-mIa">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="56"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="24"/>
                                         <color key="backgroundColor" name="color_walk_start_button"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2514,7 +2514,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                     <constraint firstAttribute="trailing" secondItem="lXd-Pn-mIa" secondAttribute="trailing" id="I2F-VP-ETR"/>
                                     <constraint firstItem="lXd-Pn-mIa" firstAttribute="leading" secondItem="LG5-Xk-0Ue" secondAttribute="leading" id="KsQ-lf-2g7"/>
                                     <constraint firstAttribute="width" constant="56" id="Umc-FF-BLw"/>
-                                    <constraint firstAttribute="bottom" secondItem="lXd-Pn-mIa" secondAttribute="bottom" id="ySf-Fo-OIF"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
@@ -2531,18 +2530,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <tabBar contentMode="scaleToFill" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="Y1f-MG-bzQ">
-                                <rect key="frame" x="0.0" y="727" width="390" height="117"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem title="Log a Walk" image="image_walk" id="ZAT-Wu-rxe"/>
-                                    <tabBarItem tag="1" title="Leaderboard" image="image_bar_chart" id="BEQ-BM-H42"/>
-                                    <tabBarItem tag="2" title="News Feed" image="image_newspaper" id="xhK-xp-VfK"/>
-                                </items>
-                                <connections>
-                                    <outlet property="delegate" destination="CXt-Ai-pha" id="VG9-f2-mLN"/>
-                                </connections>
-                            </tabBar>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="68Q-WE-dRH">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <subviews>
@@ -2640,13 +2627,11 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="A4j-JR-dzu" firstAttribute="centerX" secondItem="ApY-Si-gln" secondAttribute="centerX" id="4e8-Ei-0TU"/>
-                            <constraint firstItem="Y1f-MG-bzQ" firstAttribute="top" secondItem="LG5-Xk-0Ue" secondAttribute="bottom" constant="20" id="8oa-cP-yUU"/>
+                            <constraint firstAttribute="bottom" secondItem="fva-uK-eSq" secondAttribute="bottom" id="8VY-6m-CYY"/>
                             <constraint firstItem="pnK-jp-ucY" firstAttribute="height" secondItem="68Q-WE-dRH" secondAttribute="height" id="8v8-NO-Njk"/>
                             <constraint firstItem="A4j-JR-dzu" firstAttribute="centerY" secondItem="ApY-Si-gln" secondAttribute="centerY" id="C7s-nF-7QL"/>
                             <constraint firstAttribute="bottom" secondItem="68Q-WE-dRH" secondAttribute="bottom" id="G0o-MK-N7o"/>
                             <constraint firstItem="ApY-Si-gln" firstAttribute="top" secondItem="dyi-Zd-3oi" secondAttribute="top" id="KHv-zU-xJh"/>
-                            <constraint firstAttribute="bottom" secondItem="Y1f-MG-bzQ" secondAttribute="bottom" id="LCK-Zy-V26"/>
-                            <constraint firstAttribute="trailing" secondItem="Y1f-MG-bzQ" secondAttribute="trailing" id="P1X-2B-yq9"/>
                             <constraint firstAttribute="trailing" secondItem="ApY-Si-gln" secondAttribute="trailing" id="Q7m-nn-Wqx"/>
                             <constraint firstItem="fva-uK-eSq" firstAttribute="top" secondItem="ApY-Si-gln" secondAttribute="bottom" id="W5j-fi-8XO"/>
                             <constraint firstItem="dyi-Zd-3oi" firstAttribute="trailing" secondItem="fva-uK-eSq" secondAttribute="trailing" id="Wdx-ve-7s3"/>
@@ -2657,25 +2642,21 @@ Please take a picture of the litter you collected, or where you walked.</string>
                             <constraint firstItem="pnK-jp-ucY" firstAttribute="trailing" secondItem="6Bo-LU-wnr" secondAttribute="leading" constant="150" id="lUO-rm-tL8"/>
                             <constraint firstItem="ApY-Si-gln" firstAttribute="leading" secondItem="6Bo-LU-wnr" secondAttribute="leading" id="n3L-de-rlT"/>
                             <constraint firstAttribute="trailing" secondItem="68Q-WE-dRH" secondAttribute="trailing" id="nJv-GZ-tz8"/>
-                            <constraint firstItem="Y1f-MG-bzQ" firstAttribute="leading" secondItem="6Bo-LU-wnr" secondAttribute="leading" id="p9G-1O-QPu"/>
+                            <constraint firstItem="fva-uK-eSq" firstAttribute="bottom" secondItem="LG5-Xk-0Ue" secondAttribute="bottom" id="qLv-G0-TSj"/>
                             <constraint firstItem="68Q-WE-dRH" firstAttribute="leading" secondItem="6Bo-LU-wnr" secondAttribute="leading" id="tiU-Q6-yrO"/>
                             <constraint firstItem="fva-uK-eSq" firstAttribute="leading" secondItem="dyi-Zd-3oi" secondAttribute="leading" id="yWd-pl-l63"/>
-                            <constraint firstItem="Y1f-MG-bzQ" firstAttribute="bottom" secondItem="fva-uK-eSq" secondAttribute="bottom" id="zHf-6m-gjJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="xJ2-Xd-YDe"/>
                     <connections>
-                        <outlet property="leaderboardItem" destination="BEQ-BM-H42" id="Ql5-0p-vGy"/>
-                        <outlet property="logWalkItem" destination="ZAT-Wu-rxe" id="w8F-EU-AmE"/>
                         <outlet property="navBar" destination="ApY-Si-gln" id="Ldl-Nu-YNM"/>
-                        <outlet property="newsFeedItem" destination="xhK-xp-VfK" id="Jyw-1Q-997"/>
                         <outlet property="sliderMaskView" destination="68Q-WE-dRH" id="VZs-dp-vTY"/>
                         <outlet property="sliderView" destination="pnK-jp-ucY" id="kQD-Pg-NE0"/>
                         <outlet property="sliderViewRevealConstraint" destination="lUO-rm-tL8" id="ZxM-2z-N5T"/>
                         <outlet property="sliderViewWidthConstraint" destination="IUd-Tn-lIC" id="amm-UD-NPf"/>
                         <outlet property="startStopButton" destination="lXd-Pn-mIa" id="9W3-HU-0V3"/>
                         <outlet property="startStopButtonView" destination="LG5-Xk-0Ue" id="7rV-Nx-D32"/>
-                        <outlet property="tabBar" destination="Y1f-MG-bzQ" id="JOb-1h-HCv"/>
+                        <outlet property="startStopButtonViewBottomConstraint" destination="qLv-G0-TSj" id="hpW-iN-t6X"/>
                         <outlet property="tableView" destination="nkM-8m-PFU" id="44w-KD-j4z"/>
                         <outlet property="titleLabel" destination="A4j-JR-dzu" id="uF8-Ll-10p"/>
                         <segue destination="LBw-6l-ZFr" kind="show" identifier="LoginViewControllerShowSegue" animates="NO" id="xHu-xx-bH8"/>

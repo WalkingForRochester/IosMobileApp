@@ -12,6 +12,8 @@
 #import "Profile.h"
 #import "APIManager.h"
 #import "LogWalkViewController.h"
+#import "LeaderboardViewController.h"
+#import "NewsFeedViewController.h"
 #import "SidebarTableViewCell.h"
 #import "TouchForwardingTableView.h"
 #import "ContactUsViewController.h"
@@ -28,7 +30,7 @@ typedef enum {
 
 static MainViewController __weak *s_sharedMainViewController;
 
-@interface MainViewController () <UITabBarDelegate, UITableViewDelegate, UITableViewDataSource, TouchForwardingTableViewDelegate>
+@interface MainViewController () <UITabBarControllerDelegate, UITableViewDelegate, UITableViewDataSource, TouchForwardingTableViewDelegate>
 {
     UITabBarController __weak *_tabBarController;
     LogWalkViewController __weak *_logWalkViewController;
@@ -39,13 +41,10 @@ static MainViewController __weak *s_sharedMainViewController;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *startStopButtonView;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
-@property (weak, nonatomic) IBOutlet UITabBar *tabBar;
-@property (weak, nonatomic) IBOutlet UITabBarItem *logWalkItem;
-@property (weak, nonatomic) IBOutlet UITabBarItem *leaderboardItem;
-@property (weak, nonatomic) IBOutlet UITabBarItem *newsFeedItem;
 @property (weak, nonatomic) IBOutlet UIView *sliderMaskView;
 @property (weak, nonatomic) IBOutlet UIView *sliderView;
 @property (weak, nonatomic) IBOutlet TouchForwardingTableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *startStopButtonViewBottomConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sliderViewRevealConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *sliderViewWidthConstraint;
 
@@ -99,8 +98,6 @@ static MainViewController __weak *s_sharedMainViewController;
         button.configuration = currentConfig;
     };
     
-    _tabBar.selectedItem = _logWalkItem;
-    [self tabBar:_tabBar didSelectItem:_logWalkItem];
     _sliderMaskView.alpha = 0;
     _sliderViewRevealConstraint.constant = 0;
     
@@ -112,6 +109,12 @@ static MainViewController __weak *s_sharedMainViewController;
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
+    if (_tabBarController != nil) {
+        UITabBar *tabBar = _tabBarController.tabBar;
+        UIView *view = _startStopButtonView.superview;
+        CGRect tabBarFrame = [tabBar convertRect:tabBar.bounds toView:view];
+        _startStopButtonViewBottomConstraint.constant = 10 + view.bounds.size.height - tabBarFrame.origin.y;
+    }
     _sliderViewWidthConstraint.constant = MIN(_sliderMaskView.bounds.size.width - 50, 400);
     _tableView.scrollEnabled = _tableView.contentSize.height > _tableView.frame.size.height;
 }
@@ -134,18 +137,6 @@ static MainViewController __weak *s_sharedMainViewController;
         [_logWalkViewController startWalk];
     else
         [_logWalkViewController endWalk];
-}
-
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
-{
-    _titleLabel.text = item.title;
-    _tabBarController.selectedIndex = item.tag;
-    _startStopButtonView.hidden = item != _logWalkItem;
-}
-
-- (UIEdgeInsets)edgeInsetsForView:(UIView *)view
-{
-    return UIEdgeInsetsMake(0, 0, CGRectGetMaxY(view.bounds) - CGRectGetMinY([_tabBar convertRect:_tabBar.bounds toView:view]), 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -184,13 +175,35 @@ static MainViewController __weak *s_sharedMainViewController;
     UIViewController *target = segue.destinationViewController;
     if ([target isKindOfClass:[UITabBarController class]]) {
         _tabBarController = (UITabBarController *)target;
-        _tabBarController.tabBar.hidden = YES;
-        LogWalkViewController *vc = (LogWalkViewController *)_tabBarController.viewControllers[_logWalkItem.tag];
-        if ([vc isKindOfClass:[LogWalkViewController class]])
-            _logWalkViewController = vc;
+        if (@available(iOS 26.0, *))
+            _tabBarController.tabBar.translucent = YES;
+        else
+            _tabBarController.tabBar.translucent = NO;
+        _tabBarController.delegate = self;
+        _tabBarController.customizableViewControllers = nil;
+        NSArray<UIViewController *> *vcs = _tabBarController.viewControllers;
+        NSUInteger count = vcs.count;
+        for (NSUInteger i = 0; i < count; ++i) {
+            UIViewController *vc = vcs[i];
+            if ([vc isKindOfClass:[LogWalkViewController class]]) {
+                _logWalkViewController = (LogWalkViewController *)vc;
+                _tabBarController.selectedIndex = i;
+                [self tabBarController:_tabBarController didSelectViewController:_tabBarController.selectedViewController];
+                break;
+            }
+        }
+        NSAssert(_logWalkViewController != nil, @"Can't fit log walk tab");
     }
     else if ([target isKindOfClass:[ProfileRootViewController class]])
         self.navigationController.navigationBarHidden = NO;
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSUInteger selectedIndex = tabBarController.selectedIndex;
+    UITabBarItem *item = tabBarController.tabBar.items[selectedIndex];
+    _titleLabel.text = item.title;
+    _startStopButtonView.hidden = viewController != _logWalkViewController;
 }
 
 - (IBAction)doShowSlider:(id)sender

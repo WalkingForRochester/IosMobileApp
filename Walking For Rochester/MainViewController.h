@@ -9,8 +9,6 @@
 
 @interface MainViewController : UIViewController
 
-- (UIEdgeInsets)edgeInsetsForView:(UIView *)view;
-
 @property (class, nonatomic, readonly) MainViewController *sharedMainViewController;
 @property (assign, nonatomic, readonly) BOOL isSmallScreen;
 

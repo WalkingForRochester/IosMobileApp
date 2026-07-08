@@ -54,12 +54,6 @@
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kEmptyPageUrl]]];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    _webView.scrollView.contentInset = [[MainViewController sharedMainViewController] edgeInsetsForView:_webView.scrollView];
-}
-
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:kKeyEstimatedProgress]) {

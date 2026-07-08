@@ -240,12 +240,6 @@ typedef enum {
         [self spoofDetected];
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    _mapView.padding = [[MainViewController sharedMainViewController] edgeInsetsForView:_mapView];
-}
-
 - (void)willResignActive:(NSNotification *)notification
 {
     NSLog(@"entered: %@", NSStringFromSelector(_cmd));

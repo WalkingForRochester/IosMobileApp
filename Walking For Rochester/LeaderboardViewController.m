@@ -38,12 +38,6 @@ typedef enum {
     _interval = kLeaderboardParametersTableViewCellDelegateIntervalWeek;
 }
 
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    _tableView.contentInset = [[MainViewController sharedMainViewController] edgeInsetsForView:_tableView];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
