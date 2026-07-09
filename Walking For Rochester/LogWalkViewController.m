@@ -8,7 +8,7 @@
 #import <CoreLocation/CoreLocation.h>
 @import GoogleMaps;
 #import "LogWalkViewController.h"
-#import "RootViewController.h"
+#import "WaitToken.h"
 #import "MainViewController.h"
 #import "SafetyAndGuidelinesWaiverViewController.h"
 #import "Walk.h"
@@ -50,6 +50,7 @@ typedef enum {
     GMSMarker *_walkStartMarker;
     GMSMutablePath *_walkPath;
     GMSPolyline *_walkPolyline;
+    WaitToken *_waitToken;
 }
 
 @property (weak, nonatomic) GMSMapView *mapView;
@@ -117,9 +118,9 @@ typedef enum {
     if (locationState != _internalLocationState) {
         NSLog(@"Changing location state from %@ to %@", [self locationStateString], [self.class locationStateToString:locationState]);
         if (locationState == kLocationStateRequestingAlways)
-            [RootViewController sharedRootViewController].busyCount += 1;
+            _waitToken = [WaitToken new];
         else if (_internalLocationState == kLocationStateRequestingAlways)
-            [RootViewController sharedRootViewController].busyCount -= 1;
+            _waitToken = nil;
         _internalLocationState = locationState;
     }
 }

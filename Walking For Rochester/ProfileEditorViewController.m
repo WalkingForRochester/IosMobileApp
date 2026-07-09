@@ -12,7 +12,7 @@
 #import "ImageLoader.h"
 #import "Profile.h"
 #import "ProfileViewController.h"
-#import "RootViewController.h"
+#import "WaitToken.h"
 #import "MainViewController.h"
 #import "NSString+Extensions.h"
 
@@ -22,6 +22,7 @@
     NSData *_pendingProfileImageData;
     Profile *_profile;
     UINavigationItem __weak *_navigationItem;
+    WaitToken *_waitToken;
 }
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBarButtonItem;
@@ -127,7 +128,7 @@
         Class imageClass = [UIImage class];
         if ([provider canLoadObjectOfClass:imageClass]) {
             WEAK_SELF_PTR;
-            [RootViewController sharedRootViewController].busyCount += 1;
+            _waitToken = [WaitToken new];
             [provider loadObjectOfClass:imageClass completionHandler:^(id<NSItemProviderReading> object, NSError *error) {
                 NSAssert(![NSThread isMainThread], @"Expected background thread.");
                 if (error == nil && [object isKindOfClass:imageClass]) {
@@ -144,7 +145,7 @@
 
 - (void)displayReplacementThumbnailImage:(UIImage *)image data:(NSData *)data
 {
-    [RootViewController sharedRootViewController].busyCount -= 1;
+    _waitToken = nil;
     if (image != nil && data.length != 0) {
         _profileImageView.image = image;
         _pendingProfileImageData = data;

@@ -74,7 +74,7 @@ static RootViewController __weak *s_sharedRootViewController;
     [super viewDidLayoutSubviews];
     if (_busyView == nil) {
         _busyView = [BusyView addToView:self.view];
-        _busyView.hidden = YES;
+        //_busyView.hidden = YES;
     }
     _sliderViewWidthConstraint.constant = MIN(_sliderMaskView.bounds.size.width - 50, 400);
     _tableView.scrollEnabled = _tableView.contentSize.height > _tableView.frame.size.height;

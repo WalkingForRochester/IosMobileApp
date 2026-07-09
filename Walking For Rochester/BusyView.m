@@ -42,7 +42,7 @@
     
     if (isHidden && !hidden && _maskTimer == nil) {
         _maskView.hidden = YES;
-        _maskTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(maskTimerFired) userInfo:nil repeats:NO];
+        _maskTimer = [NSTimer scheduledTimerWithTimeInterval:0.25 target:self selector:@selector(maskTimerFired) userInfo:nil repeats:NO];
     }
     else if (!isHidden && hidden && _maskTimer != nil) {
         [_maskTimer invalidate];
@@ -56,6 +56,5 @@
     _maskTimer = nil;
     _maskView.hidden = NO;
 }
-
 
 @end

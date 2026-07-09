@@ -13,7 +13,7 @@
 #import "ProfileStatisticsTableViewCell.h"
 #import "LogWalkViewController.h"
 #import "ProfileEditorViewController.h"
-#import "RootViewController.h"
+#import "WaitToken.h"
 #import "APIManager.h"
 
 @import GoogleMaps;
@@ -29,6 +29,7 @@
     NSTimer *_bagCountUpdateTimer;
     NSString *_encodedPath;
     NSData *_imageData;
+    WaitToken *_waitToken;
 }
 
 @property (weak, nonatomic) IBOutlet GMSMapView *mapView;
@@ -210,7 +211,7 @@
     NSDictionary *metadata = info[UIImagePickerControllerMediaMetadata];
     NSLog(@"info:\n%@\nmetadata:\n%@", info, metadata);
     */
-    [RootViewController sharedRootViewController].busyCount += 1;
+    _waitToken = [WaitToken new];
     if ([image isKindOfClass:[UIImage class]]) {
         WEAK_SELF_PTR;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -245,7 +246,6 @@
             }
             [weakSelf.walk saveImageData:data fileName:fileName completion:^(BOOL succeeded) {
                 NSAssert([NSThread isMainThread], @"Expected main thread");
-                [RootViewController sharedRootViewController].busyCount -= 1;
                 [weakSelf didCompressImage:compressedImage data:data succeeded:succeeded];
             }];
         });
@@ -255,6 +255,7 @@
 
 - (void)didCompressImage:(UIImage *)image data:(NSData *)data succeeded:(BOOL)succeeded
 {
+    _waitToken = nil;
     if (image != nil) {
         _imageData = data;
         _cameraStackView.hidden = YES;

@@ -7,8 +7,7 @@
 
 #import <WebKit/WebKit.h>
 #import "NewsFeedViewController.h"
-
-#import "RootViewController.h"
+#import "WaitToken.h"
 
 #define kNewsFeedUrl @"https://walkingforrochester.org/category/news/"
 #define kEmptyPageUrl @"about:blank"
@@ -16,7 +15,7 @@
 
 @interface NewsFeedViewController ()
 {
-    BOOL _usingBusyCount;
+    WaitToken *_waitToken;
 }
 
 @property (weak, nonatomic) IBOutlet WKWebView *webView;
@@ -28,8 +27,6 @@
 - (void)dealloc
 {
     [_webView removeObserver:self forKeyPath:kKeyEstimatedProgress];
-    if (_usingBusyCount)
-        [RootViewController sharedRootViewController].busyCount -= 1;
 }
 
 - (void)viewDidLoad
@@ -42,10 +39,7 @@
 {
     [super viewWillAppear:animated];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kNewsFeedUrl]]];
-    if (!_usingBusyCount) {
-        _usingBusyCount = YES;
-        [RootViewController sharedRootViewController].busyCount += 1;
-    }
+    _waitToken = [WaitToken new];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -58,10 +52,8 @@
 {
     if ([keyPath isEqualToString:kKeyEstimatedProgress]) {
         NSNumber *value = change[NSKeyValueChangeNewKey];
-        if (_usingBusyCount && [value isKindOfClass:[NSNumber class]] && value.doubleValue >= 1) {
-            _usingBusyCount = NO;
-            [RootViewController sharedRootViewController].busyCount -= 1;
-        }
+        if ([value isKindOfClass:[NSNumber class]] && value.doubleValue >= 1)
+            _waitToken = nil;
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];

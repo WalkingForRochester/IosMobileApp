@@ -7,7 +7,7 @@
 
 #import "APIManager.h"
 #import "Secrets.h"
-#import "RootViewController.h"
+#import "WaitToken.h"
 #import "Profile.h"
 #import "LeaderboardEntry.h"
 #import "NSString+Extensions.h"
@@ -26,7 +26,10 @@ typedef enum {
 {
     NSURLRequest *_request;
     NSURLSessionDataTask *_dataTask;
+    WaitToken *_waitToken;
 }
+
+- (void)wait:(BOOL)wait;
 
 @end
 
@@ -99,7 +102,6 @@ typedef enum {
     WEAK_SELF_PTR;
     NSURLRequest *request = _request;
     _dataTask = [manager.session dataTaskWithRequest:_request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [RootViewController sharedRootViewController].busyCount -= 1;
         APIManagerCall *strongSelf = weakSelf;
         [manager removeCallInProgress:strongSelf];
         NSHTTPURLResponse *urlResponse = [response isKindOfClass:[NSHTTPURLResponse class]] ? (NSHTTPURLResponse *)response : nil;
@@ -108,7 +110,11 @@ typedef enum {
     }];
     [manager addCallInProgress:self];
     [_dataTask resume];
-    [RootViewController sharedRootViewController].busyCount += 1;
+}
+
+- (void)wait:(BOOL)wait
+{
+    _waitToken = wait ? [WaitToken new] : nil;
 }
 
 @end
@@ -152,11 +158,13 @@ typedef enum {
 
 - (void)addCallInProgress:(APIManagerCall *)call
 {
+    [call wait:YES];
     [_callsInProgress addObject:call];
 }
 
 - (void)removeCallInProgress:(APIManagerCall *)call
 {
+    [call wait:NO];
     [_callsInProgress removeObject:call];
 }
 
