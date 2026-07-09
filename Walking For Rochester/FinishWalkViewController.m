@@ -13,7 +13,7 @@
 #import "ProfileStatisticsTableViewCell.h"
 #import "LogWalkViewController.h"
 #import "ProfileEditorViewController.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "APIManager.h"
 
 @import GoogleMaps;
@@ -210,7 +210,7 @@
     NSDictionary *metadata = info[UIImagePickerControllerMediaMetadata];
     NSLog(@"info:\n%@\nmetadata:\n%@", info, metadata);
     */
-    [HomeViewController sharedHomeViewController].busyCount += 1;
+    [RootViewController sharedRootViewController].busyCount += 1;
     if ([image isKindOfClass:[UIImage class]]) {
         WEAK_SELF_PTR;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -245,7 +245,7 @@
             }
             [weakSelf.walk saveImageData:data fileName:fileName completion:^(BOOL succeeded) {
                 NSAssert([NSThread isMainThread], @"Expected main thread");
-                [HomeViewController sharedHomeViewController].busyCount -= 1;
+                [RootViewController sharedRootViewController].busyCount -= 1;
                 [weakSelf didCompressImage:compressedImage data:data succeeded:succeeded];
             }];
         });

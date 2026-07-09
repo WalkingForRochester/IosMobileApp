@@ -8,7 +8,7 @@
 #import "SignUpViewController.h"
 #import "SignUpFieldView.h"
 #import "APIManager.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "MainViewController.h"
 #import "NSString+Extensions.h"
 
@@ -79,7 +79,7 @@
                 [weakSelf duplicateAccount];
             else if (errorText.length != 0) {
                 [manager signUpWithFirstName:firstName lastName:lastName email:email phone:phone displayName:displayName password:password isCommunityService:isCommunityService completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
-                    [[HomeViewController sharedHomeViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
+                    [[RootViewController sharedRootViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
                 }];
             }
         }];

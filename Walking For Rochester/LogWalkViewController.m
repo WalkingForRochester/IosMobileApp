@@ -8,7 +8,7 @@
 #import <CoreLocation/CoreLocation.h>
 @import GoogleMaps;
 #import "LogWalkViewController.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "MainViewController.h"
 #import "SafetyAndGuidelinesWaiverViewController.h"
 #import "Walk.h"
@@ -117,9 +117,9 @@ typedef enum {
     if (locationState != _internalLocationState) {
         NSLog(@"Changing location state from %@ to %@", [self locationStateString], [self.class locationStateToString:locationState]);
         if (locationState == kLocationStateRequestingAlways)
-            [HomeViewController sharedHomeViewController].busyCount += 1;
+            [RootViewController sharedRootViewController].busyCount += 1;
         else if (_internalLocationState == kLocationStateRequestingAlways)
-            [HomeViewController sharedHomeViewController].busyCount -= 1;
+            [RootViewController sharedRootViewController].busyCount -= 1;
         _internalLocationState = locationState;
     }
 }

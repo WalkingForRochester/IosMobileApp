@@ -7,7 +7,7 @@
 
 #import <SafariServices/SafariServices.h>
 #import "MainViewController.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "LoginViewController.h"
 #import "ProfileRootViewController.h"
 #import "Profile.h"
@@ -167,7 +167,7 @@ static MainViewController __weak *s_sharedMainViewController;
 
 - (IBAction)doShowSlider:(id)sender
 {
-    [[HomeViewController sharedHomeViewController] showSliderAndAlignTitleWithNavigationBarTitle:_titleLabel];
+    [[RootViewController sharedRootViewController] showSliderAndAlignTitleWithNavigationBarTitle:_titleLabel];
 }
 
 @end

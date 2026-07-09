@@ -12,7 +12,7 @@
 #import "ProfileStatisticsTableViewCell.h"
 #import "ProfileAccountTableViewCell.h"
 #import "ProfileEditorViewController.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "MainViewController.h"
 
 typedef enum {
@@ -177,7 +177,7 @@ typedef enum {
 
 - (void)returnToLoginScreen
 {
-    [[HomeViewController sharedHomeViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
+    [[RootViewController sharedRootViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

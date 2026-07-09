@@ -1,12 +1,12 @@
 //
-//  HomeViewController.m
+//  RootViewController.m
 //  Walking For Rochester
 //
 //  Created by Lee Hasiuk on 1/15/26.
 //
 
 #import <SafariServices/SafariServices.h>
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "BusyView.h"
 #import "TouchForwardingTableView.h"
 #import "SidebarTableViewCell.h"
@@ -23,9 +23,9 @@ typedef enum {
     kNumSideBarItems
 } SidebarItemType;
 
-static HomeViewController __weak *s_sharedHomeViewController;
+static RootViewController __weak *s_sharedRootViewController;
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource, TouchForwardingTableViewDelegate>
+@interface RootViewController () <UITableViewDelegate, UITableViewDataSource, TouchForwardingTableViewDelegate>
 {
     UINavigationController *_navigationController;
     BusyView __weak *_busyView;
@@ -44,17 +44,17 @@ static HomeViewController __weak *s_sharedHomeViewController;
 
 @end
 
-@implementation HomeViewController
+@implementation RootViewController
 
-+ (HomeViewController *)sharedHomeViewController
++ (RootViewController *)sharedRootViewController
 {
-    return s_sharedHomeViewController;
+    return s_sharedRootViewController;
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
     if ((self = [super initWithCoder:coder]) != nil)
-        s_sharedHomeViewController = self;
+        s_sharedRootViewController = self;
     return self;
 }
 

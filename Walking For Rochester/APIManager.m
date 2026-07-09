@@ -7,7 +7,7 @@
 
 #import "APIManager.h"
 #import "Secrets.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "Profile.h"
 #import "LeaderboardEntry.h"
 #import "NSString+Extensions.h"
@@ -99,7 +99,7 @@ typedef enum {
     WEAK_SELF_PTR;
     NSURLRequest *request = _request;
     _dataTask = [manager.session dataTaskWithRequest:_request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        [HomeViewController sharedHomeViewController].busyCount -= 1;
+        [RootViewController sharedRootViewController].busyCount -= 1;
         APIManagerCall *strongSelf = weakSelf;
         [manager removeCallInProgress:strongSelf];
         NSHTTPURLResponse *urlResponse = [response isKindOfClass:[NSHTTPURLResponse class]] ? (NSHTTPURLResponse *)response : nil;
@@ -108,7 +108,7 @@ typedef enum {
     }];
     [manager addCallInProgress:self];
     [_dataTask resume];
-    [HomeViewController sharedHomeViewController].busyCount += 1;
+    [RootViewController sharedRootViewController].busyCount += 1;
 }
 
 @end

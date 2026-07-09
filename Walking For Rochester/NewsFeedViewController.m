@@ -8,7 +8,7 @@
 #import <WebKit/WebKit.h>
 #import "NewsFeedViewController.h"
 
-#import "HomeViewController.h"
+#import "RootViewController.h"
 
 #define kNewsFeedUrl @"https://walkingforrochester.org/category/news/"
 #define kEmptyPageUrl @"about:blank"
@@ -29,7 +29,7 @@
 {
     [_webView removeObserver:self forKeyPath:kKeyEstimatedProgress];
     if (_usingBusyCount)
-        [HomeViewController sharedHomeViewController].busyCount -= 1;
+        [RootViewController sharedRootViewController].busyCount -= 1;
 }
 
 - (void)viewDidLoad
@@ -44,7 +44,7 @@
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:kNewsFeedUrl]]];
     if (!_usingBusyCount) {
         _usingBusyCount = YES;
-        [HomeViewController sharedHomeViewController].busyCount += 1;
+        [RootViewController sharedRootViewController].busyCount += 1;
     }
 }
 
@@ -60,7 +60,7 @@
         NSNumber *value = change[NSKeyValueChangeNewKey];
         if (_usingBusyCount && [value isKindOfClass:[NSNumber class]] && value.doubleValue >= 1) {
             _usingBusyCount = NO;
-            [HomeViewController sharedHomeViewController].busyCount -= 1;
+            [RootViewController sharedRootViewController].busyCount -= 1;
         }
     }
     else

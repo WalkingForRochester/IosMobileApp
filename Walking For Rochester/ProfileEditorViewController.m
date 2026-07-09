@@ -12,7 +12,7 @@
 #import "ImageLoader.h"
 #import "Profile.h"
 #import "ProfileViewController.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "MainViewController.h"
 #import "NSString+Extensions.h"
 
@@ -127,7 +127,7 @@
         Class imageClass = [UIImage class];
         if ([provider canLoadObjectOfClass:imageClass]) {
             WEAK_SELF_PTR;
-            [HomeViewController sharedHomeViewController].busyCount += 1;
+            [RootViewController sharedRootViewController].busyCount += 1;
             [provider loadObjectOfClass:imageClass completionHandler:^(id<NSItemProviderReading> object, NSError *error) {
                 NSAssert(![NSThread isMainThread], @"Expected background thread.");
                 if (error == nil && [object isKindOfClass:imageClass]) {
@@ -144,7 +144,7 @@
 
 - (void)displayReplacementThumbnailImage:(UIImage *)image data:(NSData *)data
 {
-    [HomeViewController sharedHomeViewController].busyCount -= 1;
+    [RootViewController sharedRootViewController].busyCount -= 1;
     if (image != nil && data.length != 0) {
         _profileImageView.image = image;
         _pendingProfileImageData = data;

@@ -8,7 +8,7 @@
 #import "ChangePasswordViewController.h"
 #import "SignUpFieldView.h"
 #import "APIManager.h"
-#import "HomeViewController.h"
+#import "RootViewController.h"
 #import "LoginViewController.h"
 #import "NSString+Extensions.h"
 
@@ -50,7 +50,7 @@
         [_passwordView resignAll];
         [[APIManager sharedAPIManager] resetPasswordWithEmail:_email password:_passwordView.text completion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
             if (succeeded)
-                [[HomeViewController sharedHomeViewController] popToViewControllerWithClass:[LoginViewController class] animated:YES];
+                [[RootViewController sharedRootViewController] popToViewControllerWithClass:[LoginViewController class] animated:YES];
         }];
     }
 }
