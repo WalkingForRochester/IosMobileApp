@@ -10,6 +10,7 @@
 @interface HomeViewController : UIViewController
 
 - (void)popToViewControllerWithClass:(Class)class animated:(BOOL)animated;
+- (void)showSliderAndAlignTitleWithNavigationBarTitle:(UILabel *)titleLabel;
 
 @property (class, nonatomic, readonly) HomeViewController *sharedHomeViewController;
 @property (assign, nonatomic) NSInteger busyCount;

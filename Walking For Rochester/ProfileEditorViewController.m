@@ -13,6 +13,7 @@
 #import "Profile.h"
 #import "ProfileViewController.h"
 #import "HomeViewController.h"
+#import "MainViewController.h"
 #import "NSString+Extensions.h"
 
 @interface ProfileEditorViewController () <SignUpFieldViewDelegate, /*UINavigationControllerDelegate, UIImagePickerControllerDelegate*/ PHPickerViewControllerDelegate>
@@ -20,8 +21,10 @@
     ImageLoader *_imageLoader;
     NSData *_pendingProfileImageData;
     Profile *_profile;
+    UINavigationItem __weak *_navigationItem;
 }
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBarButtonItem;
 @property (weak, nonatomic) IBOutlet RoundImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *emailView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *phoneView;
@@ -49,12 +52,13 @@
     _phoneView.text = [_profile.phoneNumber tenDigitFormattedPhoneNumber];
     _displayNameView.text = _profile.nickname;
     _communityServiceSwitch.on = _profile.communityService;
+    _navigationItem = [MainViewController sharedMainViewController].navigationController.topViewController.navigationItem;
+    _navigationItem.leftBarButtonItem = _cancelBarButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    _profileViewController.hiddenBackButton = YES;
 }
 
 - (BOOL)signUpFieldViewIsContentValid:(SignUpFieldView *)signUpFieldView text:(NSString *)text
@@ -191,7 +195,8 @@
 - (void)pop
 {
     [self.navigationController popViewControllerAnimated:YES];
-    _profileViewController.hiddenBackButton = NO;
+    if (_navigationItem.leftBarButtonItem == _cancelBarButtonItem)
+        _navigationItem.leftBarButtonItem = nil;
 }
 
 @end

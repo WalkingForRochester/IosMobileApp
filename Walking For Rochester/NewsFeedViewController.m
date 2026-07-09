@@ -7,7 +7,7 @@
 
 #import <WebKit/WebKit.h>
 #import "NewsFeedViewController.h"
-#import "MainViewController.h"
+
 #import "HomeViewController.h"
 
 #define kNewsFeedUrl @"https://walkingforrochester.org/category/news/"

@@ -11,5 +11,6 @@
 
 @property (class, nonatomic, readonly) MainViewController *sharedMainViewController;
 @property (assign, nonatomic, readonly) BOOL isSmallScreen;
+@property (weak, nonatomic, readonly) UILabel *titleLabel;
 
 @end

@@ -37,12 +37,12 @@ typedef enum {
 
 @property (strong, nonatomic) Profile *profile;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UIView *titleView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end
 
 @implementation ProfileViewController
-
-@dynamic hiddenBackButton;
 
 - (void)viewDidLoad
 {
@@ -53,6 +53,11 @@ typedef enum {
         _tableView.sectionFooterHeight /= 2;
     }
     [self refresh];
+    MainViewController *main = [MainViewController sharedMainViewController];
+    UILabel *mainTitleLabel = main.titleLabel;
+    _titleLabel.font = mainTitleLabel.font;
+    _titleLabel.textColor = mainTitleLabel.textColor;
+    main.navigationController.topViewController.navigationItem.titleView = _titleView;
 }
 
 - (void)refresh
@@ -183,16 +188,6 @@ typedef enum {
         ProfileEditorViewController *editor = (ProfileEditorViewController *)target;
         editor.profileViewController = self;
     }
-}
-
-- (void)setHiddenBackButton:(BOOL)hiddenBackButton
-{
-    [MainViewController sharedMainViewController].navigationController.topViewController.navigationItem.hidesBackButton = hiddenBackButton;
-}
-
-- (BOOL)hiddenBackButton
-{
-    return [MainViewController sharedMainViewController].navigationController.topViewController.navigationItem.hidesBackButton;
 }
 
 @end

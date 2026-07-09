@@ -14,6 +14,5 @@
 - (void)refresh;
 
 @property (strong, nonatomic, readonly) Profile *profile;
-@property (assign, nonatomic) BOOL hiddenBackButton;
 
 @end
