@@ -7,7 +7,6 @@
 
 #import <SafariServices/SafariServices.h>
 #import "RootViewController.h"
-#import "BusyView.h"
 #import "TouchForwardingTableView.h"
 #import "SidebarTableViewCell.h"
 #import "TouchForwardingTableView.h"
@@ -28,9 +27,6 @@ static RootViewController __weak *s_sharedRootViewController;
 @interface RootViewController () <UITableViewDelegate, UITableViewDataSource, TouchForwardingTableViewDelegate>
 {
     UINavigationController *_navigationController;
-    BusyView __weak *_busyView;
-    NSInteger _busyCount;
-    BOOL _waitViewUpdatePending;
     CGPoint _touchPoint;
 }
 
@@ -72,10 +68,6 @@ static RootViewController __weak *s_sharedRootViewController;
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    if (_busyView == nil) {
-        _busyView = [BusyView addToView:self.view];
-        //_busyView.hidden = YES;
-    }
     _sliderViewWidthConstraint.constant = MIN(_sliderMaskView.bounds.size.width - 50, 400);
     _tableView.scrollEnabled = _tableView.contentSize.height > _tableView.frame.size.height;
 }
@@ -92,39 +84,6 @@ static RootViewController __weak *s_sharedRootViewController;
     }
 }
 
-- (NSInteger)busyCount
-{
-    return _busyCount;
-}
-
-- (void)setBusyCount:(NSInteger)busyCount
-{
-    if (busyCount != _busyCount) {
-        BOOL isHidden = busyCount <= 0;
-        BOOL wasHidden = _busyCount <= 0;
-        _busyCount = busyCount;
-        if (isHidden != wasHidden && !_waitViewUpdatePending) {
-            _waitViewUpdatePending = YES;
-            WEAK_SELF_PTR;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf updateWaitView];
-            });
-        }
-    }
-}
-
-- (void)updateWaitView
-{
-    _waitViewUpdatePending = NO;
-    BOOL shouldBeHidden = _busyCount <= 0;
-    BOOL isHidden = _busyView.hidden;
-    if (shouldBeHidden && !isHidden)
-        _busyView.hidden = YES;
-    else if (!shouldBeHidden && isHidden) {
-        _busyView.hidden = NO;
-        [_busyView.superview bringSubviewToFront:_busyView];
-    }
-}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

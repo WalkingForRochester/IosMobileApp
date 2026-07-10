@@ -13,7 +13,6 @@
 - (void)showSliderAndAlignTitleWithNavigationBarTitle:(UILabel *)titleLabel;
 
 @property (class, nonatomic, readonly) RootViewController *sharedRootViewController;
-@property (assign, nonatomic) NSInteger busyCount;
 
 @end
 
