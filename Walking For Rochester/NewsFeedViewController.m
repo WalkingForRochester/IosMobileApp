@@ -8,12 +8,13 @@
 #import <WebKit/WebKit.h>
 #import "NewsFeedViewController.h"
 #import "WaitToken.h"
+#import "APIManager.h"
 
 #define kNewsFeedUrl @"https://walkingforrochester.org/category/news/"
 #define kEmptyPageUrl @"about:blank"
 #define kKeyEstimatedProgress @"estimatedProgress"
 
-@interface NewsFeedViewController ()
+@interface NewsFeedViewController () <WKNavigationDelegate>
 {
     WaitToken *_waitToken;
 }
@@ -32,6 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _webView.navigationDelegate = self;
     [_webView addObserver:self forKeyPath:kKeyEstimatedProgress options:NSKeyValueObservingOptionNew context:nil];
 }
 
@@ -57,6 +59,16 @@
     }
     else
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+}
+
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+    [APIManagerCall showError:error forViewController:self];
+}
+
+- (void)webView:(WKWebView *)webView didFailNavigation:(WKNavigation *)navigation withError:(NSError *)error
+{
+    [APIManagerCall showError:error forViewController:self];
 }
 
 @end

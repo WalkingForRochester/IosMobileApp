@@ -53,13 +53,17 @@
         [_emailView resignAll];
         WEAK_SELF_PTR;
         [[APIManager sharedAPIManager] signInWithEmail:_emailView.text password:_passwordView.text completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
-            if (accountId != nil) {
-                weakSelf.passwordView.errorText = nil;
-                NSLog(@"logged in with error %@, accountId %@", error, accountId);
-                [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+            if (error == nil && (accountId != nil || errorText.length != 0)) {
+                if (accountId != nil) {
+                    weakSelf.passwordView.errorText = nil;
+                    NSLog(@"logged in with error %@, accountId %@", error, accountId);
+                    [weakSelf.navigationController popToRootViewControllerAnimated:NO];
+                }
+                else if (errorText.length != 0)
+                    weakSelf.passwordView.errorText = errorText;
             }
-            else if (errorText.length != 0)
-                weakSelf.passwordView.errorText = errorText;
+            else
+                [call showErrorForViewController:self];
         }];
     }
 }

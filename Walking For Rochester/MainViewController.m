@@ -113,8 +113,13 @@ static MainViewController __weak *s_sharedMainViewController;
             manager.accountId = nil;
             [weakSelf showLoginScreen];
         }
-        else
-            ; // XXX
+        else if (manager.accountId == nil)
+            // If there's an error and we don't have an account ID for the user, then
+            // we'll let them see the error. Otherwise, we fail silenty, because they
+            // might have no internet access. We can keep using their current account ID.
+            // This allows the user to log walk on devices that have no active service or
+            // when they are in a poor service area.
+            [call showErrorForViewController:self];
     }];
     NSAssert(_logWalkViewController != nil, @"Can't find log walk view controller");
     [_logWalkViewController addObserver:self forKeyPath:kLogWalkViewControllerWalkInProgressKeyPath options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];

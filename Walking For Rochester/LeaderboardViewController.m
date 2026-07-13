@@ -73,7 +73,10 @@ typedef enum {
     NSAssert(startDate != nil, @"Expected a start date");
     WEAK_SELF_PTR;
     [[APIManager sharedAPIManager] getLeaderboardFromStartDate:startDate toEndDate:endDate timeZone:calendar.timeZone completion:^(APIManagerCall *call, NSArray<LeaderboardEntry *> *entries, NSError *error) {
-        [weakSelf sortAndDisplayEntries:entries];
+        if (error == nil && entries != nil)
+            [weakSelf sortAndDisplayEntries:entries];
+        else
+            [call showErrorForViewController:self];
     }];
 }
 

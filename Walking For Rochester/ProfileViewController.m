@@ -65,13 +65,16 @@ typedef enum {
     if (_loadProfileCall == nil) {
         WEAK_SELF_PTR;
         _loadProfileCall = [[APIManager sharedAPIManager] getUserProfileWithCompletion:^(APIManagerCall *call, Profile *profile, NSError *error) {
-            [weakSelf didLoadProfileWithCall:call profile:profile error:error];
+            if (error == nil && profile != nil && profile.accountId != nil)
+                [weakSelf didLoadProfileWithCall:call profile:profile];
+            else
+                [call showErrorForViewController:self];
         }];
     }
 }
 
 
-- (void)didLoadProfileWithCall:(APIManagerCall *)call profile:(Profile *)profile error:(NSError *)error
+- (void)didLoadProfileWithCall:(APIManagerCall *)call profile:(Profile *)profile
 {
     if (call == _loadProfileCall) {
         _loadProfileCall = nil;
@@ -162,10 +165,12 @@ typedef enum {
     WEAK_SELF_PTR;
     APIManager *manager = [APIManager sharedAPIManager];
     [[APIManager sharedAPIManager] deleteUserWithCompletion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
-        if (succeeded) {
+        if (error == nil && succeeded) {
             manager.accountId = nil;
             [weakSelf returnToLoginScreen];
         }
+        else
+            [call showErrorForViewController:self];
     }];
 }
 

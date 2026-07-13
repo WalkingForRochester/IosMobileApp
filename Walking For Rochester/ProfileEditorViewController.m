@@ -170,7 +170,10 @@
         if (_pendingProfileImageData != nil) {
             WEAK_SELF_PTR;
             [[APIManager sharedAPIManager] uploadImageWithType:kAPIManagerImageFileTypeProfile data:_pendingProfileImageData completion:^(APIManagerCall *call, NSURL *imgUrl, NSError *error) {
-                [weakSelf finishProfileUpdate:update withImageUrl:imgUrl];
+                if (error == nil && imgUrl != nil)
+                    [weakSelf finishProfileUpdate:update withImageUrl:imgUrl];
+                else
+                    [call showErrorForViewController:self];
             }];
         }
         else
@@ -180,17 +183,17 @@
     
 - (void)finishProfileUpdate:(ProfileUpdate *)update withImageUrl:(NSURL *)imgUrl
 {
-    if (imgUrl != nil) {
-        update.imgUrl = imgUrl;
-        NSLog(@"updated profile:\n%@", update.dictionary);
-        WEAK_SELF_PTR;
-        [[APIManager sharedAPIManager] updateProfileWith:update completion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [weakSelf.profileViewController refresh];
-                [weakSelf pop];
-            }
-        }];
-    }
+    update.imgUrl = imgUrl;
+    NSLog(@"updated profile:\n%@", update.dictionary);
+    WEAK_SELF_PTR;
+    [[APIManager sharedAPIManager] updateProfileWith:update completion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
+        if (error == nil && succeeded) {
+            [weakSelf.profileViewController refresh];
+            [weakSelf pop];
+        }
+        else
+            [call showErrorForViewController:self];
+    }];
 }
 
 - (void)pop

@@ -26,6 +26,8 @@ typedef enum {
 {
     NSURLRequest *_request;
     NSURLSessionDataTask *_dataTask;
+    NSHTTPURLResponse *_urlResponse;
+    NSError *_error;
     WaitToken *_waitToken;
 }
 
@@ -100,21 +102,47 @@ typedef enum {
 - (void)runForManager:(APIManager *)manager completion:(void (^)(APIManagerCall *, NSData *, NSHTTPURLResponse *, NSError *))completion
 {
     WEAK_SELF_PTR;
+    _urlResponse = nil;
+    _error = nil;
     NSURLRequest *request = _request;
     _dataTask = [manager.session dataTaskWithRequest:_request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        APIManagerCall *strongSelf = weakSelf;
-        [manager removeCallInProgress:strongSelf];
-        NSHTTPURLResponse *urlResponse = [response isKindOfClass:[NSHTTPURLResponse class]] ? (NSHTTPURLResponse *)response : nil;
-        NSLog(@"URL: %@\nbody:\n%@\nstatus: %ld\nerror:\n%@\nresponse:\n%@", request.URL.absoluteString, [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding], urlResponse.statusCode, error, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        completion(strongSelf, data, urlResponse, error);
+        [weakSelf completeWithManager:manager request:request response:response data:data error:error completion:completion];
     }];
     [manager addCallInProgress:self];
     [_dataTask resume];
 }
 
+- (void)completeWithManager:(APIManager *)manager request:(NSURLRequest *)request response:(NSURLResponse *)response data:(NSData *)data error:(NSError *)error completion:(void (^)(APIManagerCall *, NSData *, NSHTTPURLResponse *, NSError *))completion
+{
+    [manager removeCallInProgress:self];
+    NSHTTPURLResponse *urlResponse = [response isKindOfClass:[NSHTTPURLResponse class]] ? (NSHTTPURLResponse *)response : nil;
+    _urlResponse = urlResponse;
+    _error = error;
+    NSLog(@"URL: %@\nbody:\n%@\nstatus: %ld\nerror:\n%@\nresponse:\n%@", request.URL.absoluteString, [[NSString alloc] initWithData:request.HTTPBody encoding:NSUTF8StringEncoding], urlResponse.statusCode, error, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    completion(self, data, urlResponse, error);
+}
+
 - (void)wait:(BOOL)wait
 {
     _waitToken = wait ? [WaitToken new] : nil;
+}
+
++ (void)showError:(NSError *)error forViewController:(UIViewController *)viewController
+{
+    NSString *description = error.localizedDescription;
+    NSString *message;
+    if (description.length != 0)
+        message = [NSString stringWithFormat:@"%@\n\nPlease check your connection and try again.\n", description];
+    else
+        message = @"An error occurred. Please check your Internet connection and try again.";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Error" message:message preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
+    [viewController presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)showErrorForViewController:(UIViewController *)viewController
+{
+    [self.class showError:_error forViewController:viewController];
 }
 
 @end

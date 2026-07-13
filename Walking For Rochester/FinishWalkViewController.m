@@ -307,16 +307,13 @@
         // XXX could save image URL to walk file so it doesn't need to be uploaded again if walk upload fails unless user chooses another image.
         WEAK_SELF_PTR;
         [[APIManager sharedAPIManager] logWalkWithDistance:_distance duration:_duration bags:_bagCount imageUrl:url encodedPath:_encodedPath completion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
-            [weakSelf didUploadWalk:succeeded error:error];
+            NSLog(@"didUploadWalk: succeeded %d. error:\n%@", (int)succeeded, error);
+            if (error == nil && succeeded)
+                [weakSelf.delegate finishWalkViewControllerDidUploadWalk:self];
+            else
+                [call showErrorForViewController:self];
         }];
     }
-}
-
-- (void)didUploadWalk:(BOOL)succeeded error:(NSError *)error
-{
-    NSLog(@"didUploadWalk: succeeded %d. error:\n%@", (int)succeeded, error);
-    if (error == nil && succeeded)
-        [_delegate finishWalkViewControllerDidUploadWalk:self];
 }
 
 - (void)discardWalk

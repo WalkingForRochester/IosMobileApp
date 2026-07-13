@@ -49,8 +49,10 @@
     if ([_passwordView validateAll]) {
         [_passwordView resignAll];
         [[APIManager sharedAPIManager] resetPasswordWithEmail:_email password:_passwordView.text completion:^(APIManagerCall *call, BOOL succeeded, NSError *error) {
-            if (succeeded)
+            if (error == nil && succeeded)
                 [[RootViewController sharedRootViewController] popToViewControllerWithClass:[LoginViewController class] animated:YES];
+            else
+                [call showErrorForViewController:self];
         }];
     }
 }

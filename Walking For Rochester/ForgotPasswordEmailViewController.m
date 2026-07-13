@@ -44,6 +44,8 @@
                 weakSelf.code = code;
                 [weakSelf performSegueWithIdentifier:@"ForgotPasswordCodeViewControllerShowSegue" sender:self];
             }
+            else
+                [call showErrorForViewController:self];
         }];
     }
 }

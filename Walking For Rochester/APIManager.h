@@ -5,7 +5,7 @@
 //  Created by Lee Hasiuk on 3/24/26.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 #define kAPIManagerMinPasswordLength 8
@@ -22,6 +22,10 @@ typedef enum {
 } APIManagerImageFileType;
 
 @interface APIManagerCall : NSObject
+
+- (void)showErrorForViewController:(UIViewController *)viewController;
+
++ (void)showError:(NSError *)error forViewController:(UIViewController *)viewController;
 
 @end
 

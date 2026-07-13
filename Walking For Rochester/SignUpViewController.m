@@ -75,13 +75,20 @@
         BOOL isCommunityService = _communityServiceSwitch.on;
         APIManager *manager = [APIManager sharedAPIManager];
         [manager accountByEmail:email completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
-            if (accountId != nil)
-                [weakSelf duplicateAccount];
-            else if (errorText.length != 0) {
-                [manager signUpWithFirstName:firstName lastName:lastName email:email phone:phone displayName:displayName password:password isCommunityService:isCommunityService completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
-                    [[RootViewController sharedRootViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
-                }];
+            if (error == nil && (accountId != nil || errorText.length != 0)) {
+                if (accountId != nil)
+                    [weakSelf duplicateAccount];
+                else if (errorText.length != 0) {
+                    [manager signUpWithFirstName:firstName lastName:lastName email:email phone:phone displayName:displayName password:password isCommunityService:isCommunityService completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
+                        if (error == nil && accountId != nil)
+                            [[RootViewController sharedRootViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
+                        else
+                            [call showErrorForViewController:self];
+                    }];
+                }
             }
+            else
+                [call showErrorForViewController:self];
         }];
     }
 }
