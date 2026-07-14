@@ -1407,11 +1407,75 @@
                     <view key="view" contentMode="scaleToFill" id="9eM-yp-pgI">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="696"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9nq-sA-uGp" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="94" width="390" height="568"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pW4-tB-a4P">
+                                <rect key="frame" x="167" y="596" width="56" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AN3-V9-oIh">
+                                        <rect key="frame" x="0.0" y="0.0" width="56" height="24"/>
+                                        <color key="backgroundColor" name="color_walk_start_button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
+                                        <state key="normal" title="Start" image="image_walk">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <state key="selected" title="Stop" image="image_flag_checkered"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="doStartStop:" destination="eMB-e4-faG" eventType="touchUpInside" id="Ght-A0-OOB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="23W-na-zcy"/>
+                                    <constraint firstItem="AN3-V9-oIh" firstAttribute="leading" secondItem="pW4-tB-a4P" secondAttribute="leading" id="IzQ-lJ-1zx"/>
+                                    <constraint firstItem="AN3-V9-oIh" firstAttribute="top" secondItem="pW4-tB-a4P" secondAttribute="top" id="PO8-lf-gDT"/>
+                                    <constraint firstAttribute="width" constant="56" id="W2P-g1-VS5"/>
+                                    <constraint firstAttribute="trailing" secondItem="AN3-V9-oIh" secondAttribute="trailing" id="Wxf-6g-xj8"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                        <size key="value" width="0.0" height="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                        <real key="value" value="0.25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="jOi-Fu-sIS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jOi-Fu-sIS" firstAttribute="trailing" secondItem="9nq-sA-uGp" secondAttribute="trailing" id="GKW-Yx-ln9"/>
+                            <constraint firstItem="9nq-sA-uGp" firstAttribute="top" secondItem="jOi-Fu-sIS" secondAttribute="top" id="HO9-lB-HL9"/>
+                            <constraint firstItem="jOi-Fu-sIS" firstAttribute="bottom" secondItem="9nq-sA-uGp" secondAttribute="bottom" id="KC0-4R-Gwn"/>
+                            <constraint firstItem="9nq-sA-uGp" firstAttribute="leading" secondItem="jOi-Fu-sIS" secondAttribute="leading" id="M7W-AX-WZR"/>
+                            <constraint firstItem="jOi-Fu-sIS" firstAttribute="bottom" secondItem="pW4-tB-a4P" secondAttribute="bottom" constant="10" id="Yq2-Ne-Gj9"/>
+                            <constraint firstItem="pW4-tB-a4P" firstAttribute="centerX" secondItem="9eM-yp-pgI" secondAttribute="centerX" id="ecW-Qd-FiE"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Log a Walk" image="image_walk" id="uM3-fa-1xH"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="mapView" destination="9nq-sA-uGp" id="qpV-Vw-l5N"/>
+                        <outlet property="startStopButton" destination="AN3-V9-oIh" id="2lc-nV-J1y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7mH-gL-ogy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2598,52 +2662,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                     <segue destination="Clz-T9-7ou" kind="embed" id="Ntk-aG-ske"/>
                                 </connections>
                             </containerView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LG5-Xk-0Ue">
-                                <rect key="frame" x="167" y="788" width="56" height="56"/>
-                                <subviews>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lXd-Pn-mIa">
-                                        <rect key="frame" x="0.0" y="0.0" width="56" height="24"/>
-                                        <color key="backgroundColor" name="color_walk_start_button"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="6" maxY="0.0"/>
-                                        <state key="normal" title="Start" image="image_walk">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <state key="selected" title="Stop" image="image_flag_checkered"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="12"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="doStartStop:" destination="CXt-Ai-pha" eventType="touchUpInside" id="zHS-9U-pPx"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="lXd-Pn-mIa" firstAttribute="top" secondItem="LG5-Xk-0Ue" secondAttribute="top" id="5mT-bA-ebB"/>
-                                    <constraint firstAttribute="height" constant="56" id="FAc-uy-rTq"/>
-                                    <constraint firstAttribute="trailing" secondItem="lXd-Pn-mIa" secondAttribute="trailing" id="I2F-VP-ETR"/>
-                                    <constraint firstItem="lXd-Pn-mIa" firstAttribute="leading" secondItem="LG5-Xk-0Ue" secondAttribute="leading" id="KsQ-lf-2g7"/>
-                                    <constraint firstAttribute="width" constant="56" id="Umc-FF-BLw"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                        <size key="value" width="0.0" height="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                        <integer key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                        <real key="value" value="0.25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dyi-Zd-3oi"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -2651,8 +2669,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                             <constraint firstItem="fva-uK-eSq" firstAttribute="top" secondItem="dyi-Zd-3oi" secondAttribute="top" id="76A-QP-45z"/>
                             <constraint firstAttribute="bottom" secondItem="fva-uK-eSq" secondAttribute="bottom" id="8VY-6m-CYY"/>
                             <constraint firstItem="dyi-Zd-3oi" firstAttribute="trailing" secondItem="fva-uK-eSq" secondAttribute="trailing" id="Wdx-ve-7s3"/>
-                            <constraint firstItem="LG5-Xk-0Ue" firstAttribute="centerX" secondItem="6Bo-LU-wnr" secondAttribute="centerX" id="ZIS-3u-g1n"/>
-                            <constraint firstItem="fva-uK-eSq" firstAttribute="bottom" secondItem="LG5-Xk-0Ue" secondAttribute="bottom" id="qLv-G0-TSj"/>
                             <constraint firstItem="fva-uK-eSq" firstAttribute="leading" secondItem="dyi-Zd-3oi" secondAttribute="leading" id="yWd-pl-l63"/>
                         </constraints>
                     </view>
@@ -2664,9 +2680,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         </connections>
                     </navigationItem>
                     <connections>
-                        <outlet property="startStopButton" destination="lXd-Pn-mIa" id="9W3-HU-0V3"/>
-                        <outlet property="startStopButtonView" destination="LG5-Xk-0Ue" id="7rV-Nx-D32"/>
-                        <outlet property="startStopButtonViewBottomConstraint" destination="qLv-G0-TSj" id="hpW-iN-t6X"/>
                         <outlet property="titleLabel" destination="V6T-KH-Iju" id="6hR-l1-yxL"/>
                         <outlet property="titleView" destination="jVI-5x-Jie" id="oql-RA-2Eb"/>
                         <segue destination="LBw-6l-ZFr" kind="show" identifier="LoginViewControllerShowSegue" animates="NO" id="xHu-xx-bH8"/>

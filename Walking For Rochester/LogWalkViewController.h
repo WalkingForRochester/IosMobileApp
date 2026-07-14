@@ -7,15 +7,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define kLogWalkViewControllerWalkInProgressKeyPath @"walkInProgress"
-
 @interface LogWalkViewController : UIViewController
 
 + (void)launchSettingsApp;
-
-- (void)startWalk;
-- (void)endWalk;
-
-@property (assign, nonatomic, readonly) BOOL walkInProgress;
 
 @end

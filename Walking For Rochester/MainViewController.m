@@ -21,14 +21,10 @@ static MainViewController __weak *s_sharedMainViewController;
 @interface MainViewController () <UITabBarControllerDelegate>
 {
     UITabBarController __weak *_tabBarController;
-    LogWalkViewController __weak *_logWalkViewController;
 }
 
 @property (strong, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UIView *startStopButtonView;
-@property (weak, nonatomic) IBOutlet UIButton *startStopButton;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *startStopButtonViewBottomConstraint;
 
 @end
 
@@ -37,11 +33,6 @@ static MainViewController __weak *s_sharedMainViewController;
 + (MainViewController *)sharedMainViewController
 {
     return s_sharedMainViewController;
-}
-
-- (void)dealloc
-{
-    [_logWalkViewController removeObserver:self forKeyPath:kLogWalkViewControllerWalkInProgressKeyPath];
 }
 
 - (id)initWithCoder:(NSCoder *)coder
@@ -55,52 +46,7 @@ static MainViewController __weak *s_sharedMainViewController;
 {
     [super viewDidLoad];
         
-    // Interface Builder doesn't allow setting the button to have multiple states
-    // as well as having the icon be on top. As a compromise, the image, title, font,
-    // and background color are set in interface builder and then we use the code below
-    // to switch to a button that allows a top icon with padding. The rest of the code is
-    // needed to handle the font and the state switching.
-    UIFont *font = _startStopButton.titleLabel.font;
-    UIColor *color = _startStopButton.backgroundColor;
-    UIButtonConfiguration *config = [UIButtonConfiguration plainButtonConfiguration];
-    config.imagePlacement = NSDirectionalRectEdgeTop;
-    config.imagePadding = 4;
-    config.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey,id> * (NSDictionary<NSAttributedStringKey,id> *attributes) {
-            NSMutableDictionary *mAttributes = [attributes mutableCopy];
-            mAttributes[NSFontAttributeName] = font;
-            return mAttributes;
-        };
-    _startStopButton.configuration = config;
-    _startStopButton.configurationUpdateHandler = ^(UIButton *button) {
-        UIButtonConfiguration *currentConfig = button.configuration;
-        UIControlState currentState = button.state;
-        currentConfig.title = [button titleForState:currentState];
-        currentConfig.image = [button imageForState:currentState];
-        currentConfig.baseBackgroundColor = color;
-        button.configuration = currentConfig;
-    };
-    
-    _isSmallScreen = [UIScreen mainScreen].bounds.size.height <= 700;
-    
-}
-
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-    if (_tabBarController != nil) {
-        UITabBar *tabBar = _tabBarController.tabBar;
-        UIView *view = _startStopButtonView.superview;
-        CGRect tabBarFrame = [tabBar convertRect:tabBar.bounds toView:view];
-        _startStopButtonViewBottomConstraint.constant = 10 + view.bounds.size.height - tabBarFrame.origin.y;
-    }
-}
-
-- (IBAction)doStartStop:(id)button
-{
-    if (!_logWalkViewController.walkInProgress)
-        [_logWalkViewController startWalk];
-    else
-        [_logWalkViewController endWalk];
+    _isSmallScreen = [UIScreen mainScreen].bounds.size.height <= 700;    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -123,14 +69,6 @@ static MainViewController __weak *s_sharedMainViewController;
             // when they are in a poor service area.
             [call showErrorForViewController:self];
     }];
-    NSAssert(_logWalkViewController != nil, @"Can't find log walk view controller");
-    [_logWalkViewController addObserver:self forKeyPath:kLogWalkViewControllerWalkInProgressKeyPath options:NSKeyValueObservingOptionInitial | NSKeyValueObservingOptionNew context:nil];
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if (object == _logWalkViewController && [keyPath isEqualToString:kLogWalkViewControllerWalkInProgressKeyPath])
-        _startStopButton.selected = _logWalkViewController.walkInProgress;
 }
 
 - (void)showLoginScreen
@@ -154,13 +92,11 @@ static MainViewController __weak *s_sharedMainViewController;
         for (NSUInteger i = 0; i < count; ++i) {
             UIViewController *vc = vcs[i];
             if ([vc isKindOfClass:[LogWalkViewController class]]) {
-                _logWalkViewController = (LogWalkViewController *)vc;
                 _tabBarController.selectedIndex = i;
                 [self tabBarController:_tabBarController didSelectViewController:_tabBarController.selectedViewController];
                 break;
             }
         }
-        NSAssert(_logWalkViewController != nil, @"Can't fit log walk tab");
     }
 }
 
@@ -168,7 +104,6 @@ static MainViewController __weak *s_sharedMainViewController;
 {
     NSUInteger selectedIndex = tabBarController.selectedIndex;
     UITabBarItem *item = tabBarController.tabBar.items[selectedIndex];
-    _startStopButtonView.hidden = viewController != _logWalkViewController;
     
     // Kludge: showing and hiding the slider can affect the layout of the title label,
     // resulting in it being too narrow to fit. Reestablishing the titleView fixes that.

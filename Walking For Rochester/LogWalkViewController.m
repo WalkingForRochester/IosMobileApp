@@ -53,7 +53,8 @@ typedef enum {
     WaitToken *_waitToken;
 }
 
-@property (weak, nonatomic) GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet GMSMapView *mapView;
+@property (weak, nonatomic) IBOutlet UIButton *startStopButton;
 @property (assign, nonatomic) LocationState locationState;
 @property (assign, nonatomic) BOOL walkInProgress;
 
@@ -151,21 +152,43 @@ typedef enum {
     return self;
 }
 
-- (void)loadView
+- (void)viewDidLoad
 {
-    [super loadView];
-    GMSMapViewOptions *options = [GMSMapViewOptions new];
-    options.camera = [GMSCameraPosition cameraWithTarget:kDefaultTarget zoom:kDefaultZoom];
-    GMSMapView *mapView = [[GMSMapView alloc] initWithOptions:options];
-    [mapView setMinZoom:kMinZoom maxZoom:kMaxZoom];
-    [mapView.settings setAllGesturesEnabled:NO];
-    mapView.delegate = self;
-    self.view = mapView;
-    self.mapView = mapView;
+    [super viewDidLoad];
+    [_mapView setMinZoom:kMinZoom maxZoom:kMaxZoom];
+    [_mapView.settings setAllGesturesEnabled:NO];
+    _mapView.delegate = self;
+    _mapView.camera = [GMSCameraPosition cameraWithTarget:kDefaultTarget zoom:kDefaultZoom];
     if (self.walkInProgress) {
         [self addWalkStartMarker];
         [self addWalkPath];
     }
+    
+    // Interface Builder doesn't allow setting the button to have multiple states
+    // as well as having the icon be on top. As a compromise, the image, title, font,
+    // and background color are set in interface builder and then we use the code below
+    // to switch to a button that allows a top icon with padding. The rest of the code is
+    // needed to handle the font and the state switching.
+    UIFont *font = _startStopButton.titleLabel.font;
+    UIColor *color = _startStopButton.backgroundColor;
+    UIButtonConfiguration *config = [UIButtonConfiguration plainButtonConfiguration];
+    config.imagePlacement = NSDirectionalRectEdgeTop;
+    config.imagePadding = 4;
+    config.titleTextAttributesTransformer = ^NSDictionary<NSAttributedStringKey,id> * (NSDictionary<NSAttributedStringKey,id> *attributes) {
+            NSMutableDictionary *mAttributes = [attributes mutableCopy];
+            mAttributes[NSFontAttributeName] = font;
+            return mAttributes;
+        };
+    _startStopButton.configuration = config;
+    _startStopButton.configurationUpdateHandler = ^(UIButton *button) {
+        UIButtonConfiguration *currentConfig = button.configuration;
+        UIControlState currentState = button.state;
+        currentConfig.title = [button titleForState:currentState];
+        currentConfig.image = [button imageForState:currentState];
+        currentConfig.baseBackgroundColor = color;
+        button.configuration = currentConfig;
+    };
+    _startStopButton.selected = self.walkInProgress;
 }
 
 - (void)addWalkStartMarker
@@ -283,13 +306,13 @@ typedef enum {
 - (void)updateLocationAuthorizationStatusForce:(BOOL)force
 {
     if (_isActive && (force || _locationAuthorizationStatus != _locationManager.authorizationStatus ||
-        _locationAccuracyAuthorization != _locationManager.accuracyAuthorization)) {
+                      _locationAccuracyAuthorization != _locationManager.accuracyAuthorization)) {
         CLLocationManager *locationManager = _locationManager;
         _locationAuthorizationStatus = locationManager.authorizationStatus;
         _locationAccuracyAuthorization = locationManager.accuracyAuthorization;
         BOOL fullAccuracy = _locationAccuracyAuthorization == CLAccuracyAuthorizationFullAccuracy;
         NSLog(@"_locationAuthorizationStatus is now %@, accuracy is %@", [self.class locationAuthorizationStatusToString:_locationAuthorizationStatus], [self.class locationAccuracyAuthorizationToString:_locationAccuracyAuthorization]);
-
+        
         if (self.locationState == kLocationStateRequestedAlways) {
             self.locationState = kLocationStateUpdatingLocationWhileInApp;
             BOOL always = fullAccuracy && _locationAuthorizationStatus == kCLAuthorizationStatusAuthorizedAlways;
@@ -307,7 +330,7 @@ typedef enum {
             else // We're back to square one after having been previously authorized.
                 [self stopUpdatingLocation];
         }
-
+        
         BOOL canUseLocation = NO;
         switch (_locationAuthorizationStatus) {
             case kCLAuthorizationStatusNotDetermined:
@@ -391,11 +414,11 @@ typedef enum {
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
 {
     /*
-    static NSDate *previous;
-    NSDate *now = [NSDate date];
-    if (previous != nil)
-        NSLog(@"update interval %f", [now timeIntervalSinceDate:previous]);
-    previous = now;
+     static NSDate *previous;
+     NSDate *now = [NSDate date];
+     if (previous != nil)
+     NSLog(@"update interval %f", [now timeIntervalSinceDate:previous]);
+     previous = now;
      */
     if (locations.count != 0) {
         CLLocation *location = locations[0];
@@ -564,7 +587,7 @@ typedef enum {
 
 - (void)endWalkConfirmed
 {
-    [_walk stop];
+    self.walkInProgress = NO;
     [self showFinishWalkScreen];
 }
 
@@ -597,18 +620,32 @@ typedef enum {
 
 - (void)setWalkInProgress:(BOOL)walkInProgress
 {
-    if (walkInProgress) {
-        [_walk start];
-        if ([_walk addLocation:_lastLocation])
-            [self addWalkStartMarker];
+    BOOL wasInProgress = _walk.state != kWalkStateIdle;
+    if (wasInProgress != walkInProgress) {
+        if (walkInProgress) {
+            [_walk start];
+            if ([_walk addLocation:_lastLocation])
+                [self addWalkStartMarker];
+            else
+                [self spoofDetected];
+        }
         else
-            [self spoofDetected];
+            [_walk stop];
+        _startStopButton.selected = walkInProgress;
     }
 }
 
 - (BOOL)walkInProgress
 {
     return _walk != nil && _walk.state == kWalkStateInProgress;
+}
+
+- (IBAction)doStartStop:(id)button
+{
+    if (!self.walkInProgress)
+        [self startWalk];
+    else
+        [self endWalk];
 }
 
 @end
