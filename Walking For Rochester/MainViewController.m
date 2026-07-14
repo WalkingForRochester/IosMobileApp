@@ -24,6 +24,7 @@ static MainViewController __weak *s_sharedMainViewController;
     LogWalkViewController __weak *_logWalkViewController;
 }
 
+@property (strong, nonatomic) IBOutlet UIView *titleView;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UIView *startStopButtonView;
 @property (weak, nonatomic) IBOutlet UIButton *startStopButton;
@@ -168,8 +169,12 @@ static MainViewController __weak *s_sharedMainViewController;
     NSUInteger selectedIndex = tabBarController.selectedIndex;
     UITabBarItem *item = tabBarController.tabBar.items[selectedIndex];
     _startStopButtonView.hidden = viewController != _logWalkViewController;
+    
+    // Kludge: showing and hiding the slider can affect the layout of the title label,
+    // resulting in it being too narrow to fit. Reestablishing the titleView fixes that.
+    self.navigationItem.titleView = nil;
     _titleLabel.text = item.title;
-    [self.view setNeedsLayout];
+    self.navigationItem.titleView = _titleView;
 }
 
 - (IBAction)doShowSlider:(id)sender

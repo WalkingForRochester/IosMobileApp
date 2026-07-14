@@ -2668,6 +2668,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         <outlet property="startStopButtonView" destination="LG5-Xk-0Ue" id="7rV-Nx-D32"/>
                         <outlet property="startStopButtonViewBottomConstraint" destination="qLv-G0-TSj" id="hpW-iN-t6X"/>
                         <outlet property="titleLabel" destination="V6T-KH-Iju" id="6hR-l1-yxL"/>
+                        <outlet property="titleView" destination="jVI-5x-Jie" id="oql-RA-2Eb"/>
                         <segue destination="LBw-6l-ZFr" kind="show" identifier="LoginViewControllerShowSegue" animates="NO" id="xHu-xx-bH8"/>
                     </connections>
                 </viewController>
