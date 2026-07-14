@@ -550,21 +550,16 @@ typedef enum {
 
 - (void)endWalk
 {
-    if (_walk.locationCount >= 2) {
-        NSString *message = @"Are you sure you want to end your walk and start the submission process?";
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Stop your walk?" message:message preferredStyle:UIAlertControllerStyleAlert];
-        
-        WEAK_SELF_PTR;
-        [alert addAction:[UIAlertAction actionWithTitle:@"Keep walking" style:UIAlertActionStyleCancel handler:nil]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"End walk" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-            [weakSelf endWalkConfirmed];
-        }]];
-        
-        [self presentViewController:alert animated:YES completion:nil];
-    }
-    else {
-        // XXX allow user to cancel walk completely
-    }
+    NSString *message = @"Are you sure you want to end your walk and start the submission process?";
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Stop your walk?" message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    WEAK_SELF_PTR;
+    [alert addAction:[UIAlertAction actionWithTitle:@"Keep walking" style:UIAlertActionStyleCancel handler:nil]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"End walk" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [weakSelf endWalkConfirmed];
+    }]];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)endWalkConfirmed

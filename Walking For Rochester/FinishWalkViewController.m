@@ -75,7 +75,6 @@
     NSAssert(_walk.state == kWalkStateComplete, @"Expected the walk state to be complete");
     
     NSArray<CLLocation *> *simplifiedPath = [_walk simplifiedPathWithTolerance:kSimplifiedPathTolerance];
-    NSAssert(simplifiedPath.count >= 2, @"Expected at least two points on path");
     
     GMSPath *path = [Walk pathFromLocations:simplifiedPath];
     _encodedPath = path.encodedPath;
