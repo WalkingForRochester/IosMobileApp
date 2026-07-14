@@ -80,6 +80,7 @@ static MainViewController __weak *s_sharedMainViewController;
     };
     
     _isSmallScreen = [UIScreen mainScreen].bounds.size.height <= 700;
+    
 }
 
 - (void)viewDidLayoutSubviews
@@ -168,6 +169,7 @@ static MainViewController __weak *s_sharedMainViewController;
     UITabBarItem *item = tabBarController.tabBar.items[selectedIndex];
     _startStopButtonView.hidden = viewController != _logWalkViewController;
     _titleLabel.text = item.title;
+    [self.view setNeedsLayout];
 }
 
 - (IBAction)doShowSlider:(id)sender
