@@ -6,8 +6,6 @@
 //
 
 #import <CommonCrypto/CommonDigest.h>
-#import <libPhoneNumber-iOS/NBAsYouTypeFormatter.h>
-#import <libPhoneNumber-iOS/NBPhoneNumberUtil.h>
 #import "NSString+Extensions.h"
 
 @implementation NSString (Extensions)
@@ -15,23 +13,6 @@
 - (NSString *)decimalDigits
 {
     return [[self componentsSeparatedByCharactersInSet:[NSCharacterSet decimalDigitCharacterSet].invertedSet] componentsJoinedByString:@""];
-}
-
-- (NSString *)tenDigitFormattedPhoneNumber
-{
-    static NBAsYouTypeFormatter *formatter;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        formatter = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@"US"];
-    });
-    
-    NSString *digits = [self decimalDigits];
-    if ([digits hasPrefix:@"1"])
-        digits = [digits substringFromIndex:1];
-    digits = [digits substringToIndex:MIN(digits.length, 10)];
-    NSString *formattedDigits = [formatter inputString:digits];
-    return formattedDigits.length != 0 ? formattedDigits : digits;
 }
 
 #pragma clang diagnostic push

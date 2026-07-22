@@ -35,7 +35,7 @@ typedef enum {
 
 - (APIManagerCall *)accountByEmail:(NSString *)email completion:(void (^)(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error))completion;
 
-- (APIManagerCall *)signUpWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email phone:(NSString *)phone displayName:(NSString *)displayName password:(NSString *)password isCommunityService:(BOOL)isCommunityService completion:(void (^)(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error))completion;
+- (APIManagerCall *)signUpWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email displayName:(NSString *)displayName password:(NSString *)password isCommunityService:(BOOL)isCommunityService completion:(void (^)(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error))completion;
 
 - (APIManagerCall *)signInWithEmail:(NSString *)email password:(NSString *)password completion:(void (^)(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error))completion;
 

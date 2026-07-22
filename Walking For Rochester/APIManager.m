@@ -232,13 +232,12 @@ typedef enum {
     return dateString;
 }
 
-- (APIManagerCall *)signUpWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email phone:(NSString *)phone displayName:(NSString *)displayName password:(NSString *)password isCommunityService:(BOOL)isCommunityService completion:(void (^)(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error))completion
+- (APIManagerCall *)signUpWithFirstName:(NSString *)firstName lastName:(NSString *)lastName email:(NSString *)email displayName:(NSString *)displayName password:(NSString *)password isCommunityService:(BOOL)isCommunityService completion:(void (^)(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error))completion
 {
     NSDictionary<NSString *, NSObject *> *params = @{
         @"firstName": firstName,
         @"lastName": lastName,
         @"email": email,
-        @"phone": phone,
         @"password": password,
         @"dateOfBirth": [self.class formatDate],
         @"nickname": displayName,

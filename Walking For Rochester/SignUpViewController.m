@@ -19,7 +19,6 @@
 @property (weak, nonatomic) IBOutlet SignUpFieldView *firstNameView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *lastNameView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *emailView;
-@property (weak, nonatomic) IBOutlet SignUpFieldView *phoneView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *displayNameView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *passwordView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *confirmPasswordView;
@@ -35,8 +34,6 @@
         return text.length >= kMinNameLength;
     else if (signUpFieldView == _emailView)
         return [text isValidEmailAddress];
-    else if (signUpFieldView == _phoneView)
-        return [text decimalDigits].length == 10;
     else if (signUpFieldView == _displayNameView)
         return YES;
     else if (signUpFieldView == _passwordView)
@@ -50,14 +47,6 @@
 
 - (BOOL)signUpFieldView:(SignUpFieldView *)signUpFieldView textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (signUpFieldView == _phoneView) {
-        NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        textField.text = [text tenDigitFormattedPhoneNumber];
-        UITextPosition *end = textField.endOfDocument;
-        textField.selectedTextRange = [textField textRangeFromPosition:end toPosition:end];
-        [_phoneView clearError];
-        return NO;
-    }
     return YES;
 }
 
@@ -69,7 +58,6 @@
         NSString *firstName = _firstNameView.text;
         NSString *lastName = _lastNameView.text;
         NSString *email = _emailView.text;
-        NSString *phone = [_phoneView.text decimalDigits];
         NSString *displayName = _displayNameView.text;
         NSString *password = _passwordView.text;
         BOOL isCommunityService = _communityServiceSwitch.on;
@@ -79,7 +67,7 @@
                 if (accountId != nil)
                     [weakSelf duplicateAccount];
                 else if (errorText.length != 0) {
-                    [manager signUpWithFirstName:firstName lastName:lastName email:email phone:phone displayName:displayName password:password isCommunityService:isCommunityService completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
+                    [manager signUpWithFirstName:firstName lastName:lastName email:email displayName:displayName password:password isCommunityService:isCommunityService completion:^(APIManagerCall *call, APIManagerAccountID *accountId, NSString *errorText, NSError *error) {
                         if (error == nil && accountId != nil)
                             [[RootViewController sharedRootViewController] popToViewControllerWithClass:[MainViewController class] animated:YES];
                         else

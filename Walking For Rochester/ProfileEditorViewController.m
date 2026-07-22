@@ -28,7 +28,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *cancelBarButtonItem;
 @property (weak, nonatomic) IBOutlet RoundImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *emailView;
-@property (weak, nonatomic) IBOutlet SignUpFieldView *phoneView;
 @property (weak, nonatomic) IBOutlet SignUpFieldView *displayNameView;
 @property (weak, nonatomic) IBOutlet UISwitch *communityServiceSwitch;
 
@@ -50,7 +49,6 @@
         }];
     }
     _emailView.text = _profile.email;
-    _phoneView.text = [_profile.phoneNumber tenDigitFormattedPhoneNumber];
     _displayNameView.text = _profile.nickname;
     _communityServiceSwitch.on = _profile.communityService;
     _navigationItem = [MainViewController sharedMainViewController].navigationController.topViewController.navigationItem;
@@ -66,8 +64,6 @@
 {
     if (signUpFieldView == _emailView)
         return [text isValidEmailAddress];
-    else if (signUpFieldView == _phoneView)
-        return [text decimalDigits].length == 10;
     else if (signUpFieldView == _displayNameView)
         return YES;
     NSAssert(NO, @"Field not handled");
@@ -76,14 +72,6 @@
 
 - (BOOL)signUpFieldView:(SignUpFieldView *)signUpFieldView textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (signUpFieldView == _phoneView) {
-        NSString *text = [textField.text stringByReplacingCharactersInRange:range withString:string];
-        textField.text = [text tenDigitFormattedPhoneNumber];
-        UITextPosition *end = textField.endOfDocument;
-        textField.selectedTextRange = [textField textRangeFromPosition:end toPosition:end];
-        [_phoneView clearError];
-        return NO;
-    }
     return YES;
 }
 
@@ -163,7 +151,6 @@
         [_emailView resignAll];
         ProfileUpdate *update = [ProfileUpdate new];
         update.email = _emailView.text;
-        update.phone = [_phoneView.text decimalDigits];
         update.nickname = _displayNameView.text;
         update.communityService = _communityServiceSwitch.on;
         

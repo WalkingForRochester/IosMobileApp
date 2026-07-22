@@ -1949,7 +1949,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                 <rect key="frame" x="25" y="148" width="340" height="628"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Qu5-30-jdW">
-                                        <rect key="frame" x="0.0" y="25" width="340" height="708"/>
+                                        <rect key="frame" x="0.0" y="25" width="340" height="642"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnk-ub-Kmg" customClass="SignUpFieldView">
                                                 <rect key="frame" x="0.0" y="0.0" width="340" height="56"/>
@@ -2052,47 +2052,12 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 <connections>
                                                     <outlet property="delegate" destination="sUq-oE-z4P" id="9mn-Rw-cdd"/>
                                                     <outlet property="errorLabel" destination="k9C-bQ-Jnx" id="dit-Y8-ny9"/>
-                                                    <outlet property="next" destination="Zsj-Bf-GjN" id="LbU-YX-opZ"/>
+                                                    <outlet property="next" destination="S6p-fR-TlX" id="aWL-zl-scB"/>
                                                     <outlet property="textField" destination="zcm-kN-W8e" id="V9Q-Lq-qlw"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zsj-Bf-GjN" userLabel="Phone Number View" customClass="SignUpFieldView">
-                                                <rect key="frame" x="0.0" y="198" width="340" height="56"/>
-                                                <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ze-t3-NKN">
-                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="tel"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="Zsj-Bf-GjN" id="DkT-VD-WNe"/>
-                                                        </connections>
-                                                    </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="Please enter a valid 10 digit phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxp-js-ffX">
-                                                        <rect key="frame" x="0.0" y="39" width="340" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                        <color key="textColor" systemColor="systemRedColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="8ze-t3-NKN" secondAttribute="trailing" id="4dQ-fC-7gd"/>
-                                                    <constraint firstItem="Qxp-js-ffX" firstAttribute="leading" secondItem="Zsj-Bf-GjN" secondAttribute="leading" id="GQf-y8-L43"/>
-                                                    <constraint firstItem="8ze-t3-NKN" firstAttribute="leading" secondItem="Zsj-Bf-GjN" secondAttribute="leading" id="NT0-V3-t8e"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Qxp-js-ffX" secondAttribute="trailing" id="Y1b-CT-P4w"/>
-                                                    <constraint firstItem="Qxp-js-ffX" firstAttribute="top" secondItem="8ze-t3-NKN" secondAttribute="bottom" constant="5" id="i6P-W8-qTK"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Qxp-js-ffX" secondAttribute="bottom" constant="5" id="ofj-hJ-e2j"/>
-                                                    <constraint firstItem="8ze-t3-NKN" firstAttribute="top" secondItem="Zsj-Bf-GjN" secondAttribute="top" id="p6y-e7-8T9"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="delegate" destination="sUq-oE-z4P" id="QzM-6E-kOb"/>
-                                                    <outlet property="errorLabel" destination="Qxp-js-ffX" id="iCc-NY-Jjh"/>
-                                                    <outlet property="next" destination="S6p-fR-TlX" id="TVn-jF-n6n"/>
-                                                    <outlet property="textField" destination="8ze-t3-NKN" id="IvJ-zZ-dfW"/>
-                                                </connections>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6p-fR-TlX" customClass="SignUpFieldView">
-                                                <rect key="frame" x="0.0" y="264" width="340" height="44"/>
+                                                <rect key="frame" x="0.0" y="198" width="340" height="44"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OGS-K6-Sdn">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
@@ -2127,7 +2092,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bo3-mE-oZF" userLabel="Password View" customClass="SignUpFieldView">
-                                                <rect key="frame" x="0.0" y="318" width="340" height="56"/>
+                                                <rect key="frame" x="0.0" y="252" width="340" height="56"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jFr-b9-xih">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
@@ -2162,7 +2127,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFv-BF-FU1" customClass="SignUpFieldView">
-                                                <rect key="frame" x="0.0" y="384" width="340" height="56"/>
+                                                <rect key="frame" x="0.0" y="318" width="340" height="56"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6o4-m1-pE5">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
@@ -2196,7 +2161,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="1EZ-qc-t9c">
-                                                <rect key="frame" x="0.0" y="450" width="340" height="50"/>
+                                                <rect key="frame" x="0.0" y="384" width="340" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Check this box if you need community service hours and documentation" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kiI-KW-f8q">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
@@ -2219,14 +2184,14 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lic-o3-ciR">
-                                                <rect key="frame" x="0.0" y="510" width="340" height="25"/>
+                                                <rect key="frame" x="0.0" y="444" width="340" height="25"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="lVj-HP-2Sf"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Y83-gu-L1Z" userLabel="Buttons Stack View">
-                                                <rect key="frame" x="0.0" y="545" width="340" height="128"/>
+                                                <rect key="frame" x="0.0" y="479" width="340" height="128"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxI-PW-l9Y">
                                                         <rect key="frame" x="0.0" y="0.0" width="113.33333333333333" height="128"/>
@@ -2251,7 +2216,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T3V-NQ-cPq">
-                                                <rect key="frame" x="0.0" y="683" width="340" height="25"/>
+                                                <rect key="frame" x="0.0" y="617" width="340" height="25"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="EtY-o9-Y7a"/>
@@ -2293,7 +2258,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         <outlet property="keyboardLayoutConstraint" destination="ck4-Ow-ypq" id="67G-DH-fVl"/>
                         <outlet property="lastNameView" destination="gRs-H1-Kdj" id="0Ft-9U-dFV"/>
                         <outlet property="passwordView" destination="bo3-mE-oZF" id="9Ow-Ah-ESE"/>
-                        <outlet property="phoneView" destination="Zsj-Bf-GjN" id="C7s-VJ-wh0"/>
                         <outlet property="scrollView" destination="vDM-8G-YTM" id="XSD-eZ-d0v"/>
                     </connections>
                 </viewController>
@@ -2328,7 +2292,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                 <rect key="frame" x="25" y="0.0" width="340" height="662"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="XOl-5m-mDD">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="558"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="340" height="502"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n7N-oL-fsA">
                                                 <rect key="frame" x="0.0" y="0.0" width="340" height="271"/>
@@ -2393,47 +2357,12 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 <connections>
                                                     <outlet property="delegate" destination="UHK-8Y-fpv" id="nP6-NJ-3so"/>
                                                     <outlet property="errorLabel" destination="xd3-Zk-o4U" id="5h8-rj-GJX"/>
-                                                    <outlet property="next" destination="SfN-Of-sfa" id="9Jk-DV-utX"/>
+                                                    <outlet property="next" destination="apR-dP-yUa" id="nTI-o1-h3S"/>
                                                     <outlet property="textField" destination="7mX-e8-d72" id="6Ut-xs-eYz"/>
                                                 </connections>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SfN-Of-sfa" userLabel="Phone Number View" customClass="SignUpFieldView">
-                                                <rect key="frame" x="0.0" y="327" width="340" height="56"/>
-                                                <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xlc-65-tbB">
-                                                        <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" textContentType="tel"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="SfN-Of-sfa" id="Gl9-6o-3Mv"/>
-                                                        </connections>
-                                                    </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="750" text="Please enter a valid 10 digit phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1x-5E-TWW">
-                                                        <rect key="frame" x="0.0" y="39" width="340" height="12"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                                        <color key="textColor" systemColor="systemRedColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="xlc-65-tbB" secondAttribute="trailing" id="5jB-1z-Bfm"/>
-                                                    <constraint firstItem="I1x-5E-TWW" firstAttribute="top" secondItem="xlc-65-tbB" secondAttribute="bottom" constant="5" id="H79-hg-7E3"/>
-                                                    <constraint firstItem="xlc-65-tbB" firstAttribute="top" secondItem="SfN-Of-sfa" secondAttribute="top" id="Ie5-ON-HJB"/>
-                                                    <constraint firstItem="xlc-65-tbB" firstAttribute="leading" secondItem="SfN-Of-sfa" secondAttribute="leading" id="YLz-99-OdB"/>
-                                                    <constraint firstAttribute="trailing" secondItem="I1x-5E-TWW" secondAttribute="trailing" id="aD1-Y6-Tn4"/>
-                                                    <constraint firstItem="I1x-5E-TWW" firstAttribute="leading" secondItem="SfN-Of-sfa" secondAttribute="leading" id="bmn-oX-OTJ"/>
-                                                    <constraint firstAttribute="bottom" secondItem="I1x-5E-TWW" secondAttribute="bottom" constant="5" id="pzF-YL-CxZ"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="delegate" destination="UHK-8Y-fpv" id="D8k-CK-q1v"/>
-                                                    <outlet property="errorLabel" destination="I1x-5E-TWW" id="E1J-h4-kAp"/>
-                                                    <outlet property="next" destination="apR-dP-yUa" id="w1J-4H-a4b"/>
-                                                    <outlet property="textField" destination="xlc-65-tbB" id="6u4-cE-Byy"/>
-                                                </connections>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apR-dP-yUa" customClass="SignUpFieldView">
-                                                <rect key="frame" x="0.0" y="383" width="340" height="44"/>
+                                                <rect key="frame" x="0.0" y="327" width="340" height="44"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Display Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L3B-yD-awb">
                                                         <rect key="frame" x="0.0" y="0.0" width="340" height="34"/>
@@ -2467,7 +2396,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </connections>
                                             </view>
                                             <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Dju-Xn-H8x">
-                                                <rect key="frame" x="0.0" y="427" width="340" height="50"/>
+                                                <rect key="frame" x="0.0" y="371" width="340" height="50"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Check this box if you need community service hours and documentation" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6G-ot-qC3">
                                                         <rect key="frame" x="0.0" y="0.0" width="249" height="50"/>
@@ -2490,14 +2419,14 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCh-U8-sIu">
-                                                <rect key="frame" x="0.0" y="477" width="340" height="25"/>
+                                                <rect key="frame" x="0.0" y="421" width="340" height="25"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="0ni-Xb-Rut"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="hTu-SP-KIN">
-                                                <rect key="frame" x="0.0" y="502" width="340" height="31"/>
+                                                <rect key="frame" x="0.0" y="446" width="340" height="31"/>
                                                 <subviews>
                                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gW9-1z-Q7N">
                                                         <rect key="frame" x="0.0" y="0.0" width="24" height="31"/>
@@ -2581,7 +2510,7 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                                 </subviews>
                                             </stackView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9C-jN-gWQ">
-                                                <rect key="frame" x="0.0" y="533" width="340" height="25"/>
+                                                <rect key="frame" x="0.0" y="477" width="340" height="25"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="XzY-bM-U4c"/>
@@ -2592,14 +2521,12 @@ Please take a picture of the litter you collected, or where you walked.</string>
                                             <constraint firstAttribute="trailing" secondItem="rCh-U8-sIu" secondAttribute="trailing" id="3LL-Hf-rpH"/>
                                             <constraint firstAttribute="trailing" secondItem="Dju-Xn-H8x" secondAttribute="trailing" id="9Lg-LE-GKs"/>
                                             <constraint firstAttribute="trailing" secondItem="n7N-oL-fsA" secondAttribute="trailing" id="DmB-YH-0cn"/>
-                                            <constraint firstItem="SfN-Of-sfa" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="EDp-QT-Z05"/>
                                             <constraint firstAttribute="trailing" secondItem="No6-6P-UhW" secondAttribute="trailing" id="RTl-ZV-Mvm"/>
                                             <constraint firstItem="rCh-U8-sIu" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="Tfj-Ur-PPe"/>
                                             <constraint firstItem="apR-dP-yUa" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="f9k-Al-WZE"/>
                                             <constraint firstItem="F9C-jN-gWQ" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="gXK-ER-0j9"/>
                                             <constraint firstAttribute="trailing" secondItem="apR-dP-yUa" secondAttribute="trailing" id="gke-Kl-22R"/>
                                             <constraint firstItem="n7N-oL-fsA" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="ioL-lj-sTp"/>
-                                            <constraint firstAttribute="trailing" secondItem="SfN-Of-sfa" secondAttribute="trailing" id="nX8-rb-WBH"/>
                                             <constraint firstItem="Dju-Xn-H8x" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="rep-7W-zJH"/>
                                             <constraint firstItem="No6-6P-UhW" firstAttribute="leading" secondItem="XOl-5m-mDD" secondAttribute="leading" id="swd-1M-hjm"/>
                                             <constraint firstAttribute="trailing" secondItem="F9C-jN-gWQ" secondAttribute="trailing" id="w9i-jF-8yV"/>
@@ -2634,7 +2561,6 @@ Please take a picture of the litter you collected, or where you walked.</string>
                         <outlet property="displayNameView" destination="apR-dP-yUa" id="Sh0-o6-Mq3"/>
                         <outlet property="emailView" destination="No6-6P-UhW" id="614-IE-g4Q"/>
                         <outlet property="keyboardLayoutConstraint" destination="qn8-3f-fpK" id="xGg-Jq-U01"/>
-                        <outlet property="phoneView" destination="SfN-Of-sfa" id="vHx-Lc-zRV"/>
                         <outlet property="profileImageView" destination="xYE-wW-SkD" id="MD7-ej-CQN"/>
                         <outlet property="scrollView" destination="CNU-b3-lqW" id="mak-S5-kgM"/>
                     </connections>

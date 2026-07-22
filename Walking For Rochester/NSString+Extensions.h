@@ -11,8 +11,6 @@
 
 - (NSString *)decimalDigits;
 
-- (NSString *)tenDigitFormattedPhoneNumber;
-
 - (NSString *)md5Hash;
 
 - (BOOL)isValidEmailAddress;

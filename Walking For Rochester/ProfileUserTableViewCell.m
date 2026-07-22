@@ -48,9 +48,6 @@
     NSString *email = profile.email;
     if (email.length != 0)
         [text appendFormat:@"%@\n", email];
-    NSString *phone = [profile.phoneNumber tenDigitFormattedPhoneNumber];
-    if (phone.length != 0)
-        [text appendFormat:@"%@\n", phone];
     if (text.length != 0)
         [text appendFormat:@"Community service: %@", profile.communityService ? @"YES" : @"NO"];
     _profileLabel.text = text;

@@ -10,7 +10,7 @@
 
 @implementation Profile
 
-@dynamic accountId, nickname, email, phoneNumber, communityService, imgUrl, facebookId, distance, totalDistance, duration, totalDuration;
+@dynamic accountId, nickname, email, communityService, imgUrl, facebookId, distance, totalDistance, duration, totalDuration;
 
 - (APIManagerAccountID *)accountId
 {
@@ -23,11 +23,6 @@
 }
 
 - (NSString *)email
-{
-    return [self stringWithKey:NSStringFromSelector(_cmd)];
-}
-
-- (NSString *)phoneNumber
 {
     return [self stringWithKey:NSStringFromSelector(_cmd)];
 }
@@ -80,7 +75,7 @@
 
 @implementation ProfileUpdate
 
-@dynamic accountId, nickname, email, phone, communityService, imgUrl, dictionary;
+@dynamic accountId, nickname, email, communityService, imgUrl, dictionary;
 
 - (id)init
 {
@@ -130,16 +125,6 @@
 }
 
 - (NSString *)email
-{
-    return (NSString *)_params[NSStringFromSelector(_cmd)];
-}
-
-- (void)setPhone:(NSString *)phone
-{
-    [self setParamFromSelector:_cmd value:phone];
-}
-
-- (NSString *)phone
 {
     return (NSString *)_params[NSStringFromSelector(_cmd)];
 }
