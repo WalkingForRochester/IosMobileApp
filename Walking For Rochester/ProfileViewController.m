@@ -54,9 +54,6 @@ typedef enum {
     }
     [self refresh];
     MainViewController *main = [MainViewController sharedMainViewController];
-    UILabel *mainTitleLabel = main.titleLabel;
-    _titleLabel.font = mainTitleLabel.font;
-    _titleLabel.textColor = mainTitleLabel.textColor;
     main.navigationController.topViewController.navigationItem.titleView = _titleView;
 }
 

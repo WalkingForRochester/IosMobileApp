@@ -13,11 +13,12 @@
 #import "ContactUsViewController.h"
 
 typedef enum {
-    kSidebarItemSafetyGuidelines = 0,
-    kSidebarItemWaiver,
-    kSidebarItemOurStory,
+    kSidebarItemSeasonSchedule = 0,
+    kSidebarItemVolunteer,
     kSidebarItemReportLitter,
     kSidebarItemAboutApp,
+    kSidebarItemSafetyGuidelines,
+    kSidebarItemWaiver,
     kSidebarItemContactUs,
     kNumSideBarItems
 } SidebarItemType;
@@ -103,8 +104,6 @@ static RootViewController __weak *s_sharedRootViewController;
 
 - (void)showSliderAndAlignTitleWithNavigationBarTitle:(UILabel *)titleLabel
 {
-    _sliderTitleLabel.font = titleLabel.font;
-    _sliderTitleLabel.textColor = titleLabel.textColor;
     NSLayoutConstraint *alignConstraint = [_sliderTitleLabel.centerYAnchor constraintEqualToAnchor:titleLabel.centerYAnchor];
     _sliderTitleLabelTopConstraint.active = NO;
     alignConstraint.active = YES;
@@ -217,17 +216,13 @@ static RootViewController __weak *s_sharedRootViewController;
     NSString *imageName = nil;
     NSString *itemName = nil;
     switch ((SidebarItemType)indexPath.row) {
-        case kSidebarItemSafetyGuidelines:
-            imageName = @"image_health_and_safety";
-            itemName = @"Safety Guidelines";
+        case kSidebarItemSeasonSchedule:
+            imageName = @"image_season_schedule";
+            itemName = @"Season Schedule";
             break;
-        case kSidebarItemWaiver:
-            imageName = @"image_contract";
-            itemName = @"Waiver";
-            break;
-        case kSidebarItemOurStory:
-            imageName = @"image_article";
-            itemName = @"Our Story";
+        case kSidebarItemVolunteer:
+            imageName = @"image_volunteer";
+            itemName = @"Volunteer";
             break;
         case kSidebarItemReportLitter:
             imageName = @"image_trash";
@@ -236,6 +231,14 @@ static RootViewController __weak *s_sharedRootViewController;
         case kSidebarItemAboutApp:
             imageName = @"image_info";
             itemName = @"About App";
+            break;
+        case kSidebarItemSafetyGuidelines:
+            imageName = @"image_health_and_safety";
+            itemName = @"Safety Guidelines";
+            break;
+        case kSidebarItemWaiver:
+            imageName = @"image_contract";
+            itemName = @"Waiver";
             break;
         case kSidebarItemContactUs:
             imageName = @"image_help";
@@ -253,20 +256,23 @@ static RootViewController __weak *s_sharedRootViewController;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch ((SidebarItemType)indexPath.row) {
+        case kSidebarItemSeasonSchedule:
+            [self showWebPage:@"https://walkingforrochester.org/all-litter-events/"];
+            break;
+        case kSidebarItemVolunteer:
+            [self showWebPage:@"https://links.walkingforrochester.org/widget/form/Q47Nt9QEMWrhrNFxpmeC?notrack=true"];
+            break;
+        case kSidebarItemReportLitter:
+            [self showWebPage:@"https://survey123.arcgis.com/share/6412b1c81abf41059a579011dfe92cc0"];
+            break;
+        case kSidebarItemAboutApp:
+            [self showWebPage:@"https://walkingforrochester.org/about-_the_app/"];
+            break;
         case kSidebarItemSafetyGuidelines:
             [self showWebPage:@"https://docs.google.com/viewerng/viewer?embedded=true&url=https://walkingforrochester.com/pdf/guidelines.pdf"];
             break;
         case kSidebarItemWaiver:
             [self showWebPage:@"https://links.walkingforrochester.org/widget/form/LA27eLPPbgnxGtmJFZYK"];
-            break;
-        case kSidebarItemOurStory:
-            [self showWebPage:@"https://walkingforrochester.org/our-story/"];
-            break;
-        case kSidebarItemReportLitter:
-            [self showWebPage:@"https://walkingforrochester.org/report-litter/"];
-            break;
-        case kSidebarItemAboutApp:
-            [self showWebPage:@"https://walkingforrochester.org/about-_the_app/"];
             break;
         case kSidebarItemContactUs:
             [self showContactUs];
